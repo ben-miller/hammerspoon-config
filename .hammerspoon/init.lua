@@ -219,4 +219,3 @@ appMusicWatcher:start()
 
 -- Announce that config has changed
 hs.alert.show("Config loaded")
-
