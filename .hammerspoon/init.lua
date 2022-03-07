@@ -22,13 +22,7 @@ function reloadConfig(files)
 end
 watcher = hs.pathwatcher.new(home .. "/.hammerspoon/", reloadConfig):start()
 
-local hyper = { "cmd", "ctrl", "alt", "shift" }
-local hyper_eisu = { "cmd", "ctrl", "alt", "shift", "eisu" }
-local fn = { "fn" }
-local eisu = { "eisu" }
-local cmd_eisu = { "cmd", "eisu" }
-local cmd = { "cmd" }
-local alt = { "alt" }
+local hyper = { "cmd", "ctrl", "alt" }
 local hypo = { "ctrl", "alt", "shift" }
 
 -- Open shortcut documentation
@@ -70,7 +64,7 @@ function maximize()
 end
 
 -- Maximize current window
-hs.hotkey.bind(hyper, "F", function()
+hs.hotkey.bind(hyper, "up", function()
     maximize()
 end)
 
@@ -130,7 +124,7 @@ end)
 
 -- Open Browser
 hs.hotkey.bind(hyper, "B", function()
-    hs.application.launchOrFocus("Brave Browser")
+    hs.application.launchOrFocus("Firefox")
 end)
 
 -- Open Intellij
