@@ -73,6 +73,18 @@ function moveRightHalf()
   win:setFrame(f)
 end
 
+function moveMiddleTwoThirds()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.w / 6
+  f.w = 2 * (max.w / 3)
+
+  win:setFrame(f)
+end
+
 function maximize()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -88,6 +100,11 @@ end
 -- Maximize current window
 hs.hotkey.bind(hyper, "up", function()
     maximize()
+end)
+
+-- Move current window to middle 2/3
+hs.hotkey.bind(hyper, "down", function()
+    moveMiddleTwoThirds()
 end)
 
 -- Move current window to left half of screen
