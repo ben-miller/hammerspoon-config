@@ -4,7 +4,7 @@
 -- TODO Shortcut for reloading HS
 
 local home = os.getenv("HOME")
-local log = hs.logger.new("main", "verbose")
+local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
 local dumper = require('dumper')
 local _ = require('underscore')
 
@@ -32,10 +32,21 @@ function moveLeftHalf()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
+
+  if (f.x == 0 and f.w == max.w / 2) then
+    -- If already set to left half, set to left 2/3
+    f.x = max.x
+    f.y = max.y
+    f.w = 2 * (max.w / 3)
+    f.h = max.h
+  else
+    -- If not already set to left half, set to left 1/2
+    f.x = max.x
+    f.y = max.y
+    f.w = max.w / 2
+    f.h = max.h
+  end
+
   win:setFrame(f)
 end
 
@@ -44,10 +55,21 @@ function moveRightHalf()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
+
+  if (f.x == max.x + (max.w / 2)) then
+    -- If already set to right half, set to right 2/3
+    f.x = max.x + (max.w / 3)
+    f.y = max.y
+    f.w = 2 * (max.w / 3)
+    f.h = max.h
+  else
+    -- If not already set to right half, set to right 1/2
+    f.x = max.x + (max.w / 2)
+    f.y = max.y
+    f.w = max.w / 2
+    f.h = max.h
+  end
+
   win:setFrame(f)
 end
 
