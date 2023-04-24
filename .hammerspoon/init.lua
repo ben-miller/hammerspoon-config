@@ -79,7 +79,7 @@ function moveMiddleTwoThirds()
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.w / 6
+  f.x = max.x + max.w / 6
   f.w = 2 * (max.w / 3)
 
   win:setFrame(f)
