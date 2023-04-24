@@ -33,7 +33,7 @@ function moveLeftHalf()
   local screen = win:screen()
   local max = screen:frame()
 
-  if (f.x == 0 and f.w == max.w / 2) then
+  if (max.x == f.x and f.w == max.w / 2) then
     -- If already set to left half, set to left 2/3
     f.x = max.x
     f.y = max.y
