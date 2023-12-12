@@ -81,6 +81,8 @@ function moveMiddleTwoThirds()
 
   f.x = max.x + max.w / 6
   f.w = 2 * (max.w / 3)
+  f.y = max.y
+  f.h = max.h
 
   win:setFrame(f)
 end
