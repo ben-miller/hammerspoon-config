@@ -23,7 +23,7 @@ end
 watcher = hs.pathwatcher.new(home .. "/.hammerspoon/", reloadConfig):start()
 
 local hyper = { "cmd", "ctrl", "alt" }
-local hypo = { "ctrl", "alt", "shift" }
+local hypo = { "ctrl", "alt" }
 
 -- Open shortcut documentation
 
@@ -100,45 +100,45 @@ function maximize()
 end
 
 -- Maximize current window
-hs.hotkey.bind(hyper, "up", function()
+hs.hotkey.bind(hyper, "K", function()
     maximize()
 end)
 
 -- Move current window to middle 2/3
-hs.hotkey.bind(hyper, "down", function()
+hs.hotkey.bind(hyper, "J", function()
     moveMiddleTwoThirds()
 end)
 
 -- Move current window to left half of screen
-hs.hotkey.bind(hyper, "left", function()
+hs.hotkey.bind(hyper, "H", function()
     moveLeftHalf()
 end)
 
 -- Move current window to right half of screen
-hs.hotkey.bind(hyper, "right", function()
+hs.hotkey.bind(hyper, "L", function()
     moveRightHalf()
 end)
 
 -- Focus on window to left
-hs.hotkey.bind(hyper, "H", function()
+hs.hotkey.bind(hypo, "H", function()
     local win = hs.window.focusedWindow()
     local res = win.focusWindowWest()
 end)
 
 -- Focus on window to right
-hs.hotkey.bind(hyper, "L", function()
+hs.hotkey.bind(hypo, "L", function()
     local win = hs.window.focusedWindow()
     local res = win.focusWindowEast()
 end)
 
 -- Focus on window below
-hs.hotkey.bind(hyper, "J", function()
+hs.hotkey.bind(hypo, "J", function()
     local win = hs.window.focusedWindow()
     local res = win.focusWindowSouth()
 end)
 
 -- Focus on window above
-hs.hotkey.bind(hyper, "K", function()
+hs.hotkey.bind(hypo, "K", function()
     local win = hs.window.focusedWindow()
     local res = win.focusWindowNorth()
 end)
@@ -191,9 +191,9 @@ local function urlencode(url)
 end
 
 local function focusOtherBrowserWindow()
-  hs.application.launchOrFocus("Brave Browser")
+  hs.application.launchOrFocus("Firefox")
   local focused = hs.window.focusedWindow()
-  local app = hs.application.find("Brave Browser")
+  local app = hs.application.find("Firefox")
   local windows = app:allWindows()
   if #windows > 1 then
     _.each(windows, function(window)
@@ -210,23 +210,6 @@ local function formattedSearchTermFromClipboard()
   term = urlencode(term)
   return term
 end
-
--- Search text in Jisho.org
-hs.hotkey.bind(hypo, "J", function()
---hs.alert.show(hs.pasteboard.readString())
-  local term = formattedSearchTermFromClipboard()
-  local url = string.format("https://jisho.org/search/%s", term)
-  focusOtherBrowserWindow()
-  hs.urlevent.openURL(url)
-end)
-
--- Search kanji in Jisho.org
-hs.hotkey.bind(hypo, "K", function()
-  local term = formattedSearchTermFromClipboard()
-  local url = "https://jisho.org/search/%23kanji%20" .. term
-  focusOtherBrowserWindow()
-  hs.urlevent.openURL(url)
-end)
 
 -- Translate term in gTranslate
 hs.hotkey.bind(hypo, "T", function()
