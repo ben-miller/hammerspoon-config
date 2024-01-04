@@ -28,104 +28,104 @@ local hypo = { "ctrl", "alt" }
 -- Open shortcut documentation
 
 function moveLeftHalf()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
 
-  if (max.x == f.x and f.w == max.w / 2) then
-    -- If already set to left half, set to left 2/3
-    f.x = max.x
-    f.y = max.y
-    f.w = 2 * (max.w / 3)
-    f.h = max.h
-  else
-    -- If not already set to left half, set to left 1/2
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h
-  end
+    if (max.x == f.x and f.w == max.w / 2) then
+        -- If already set to left half, set to left 2/3
+        f.x = max.x
+        f.y = max.y
+        f.w = 2 * (max.w / 3)
+        f.h = max.h
+    else
+        -- If not already set to left half, set to left 1/2
+        f.x = max.x
+        f.y = max.y
+        f.w = max.w / 2
+        f.h = max.h
+    end
 
-  win:setFrame(f)
+    win:setFrame(f)
 end
 
 function moveRightHalf()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
 
-  if (f.x == max.x + (max.w / 2)) then
-    -- If already set to right half, set to right 2/3
-    f.x = max.x + (max.w / 3)
-    f.y = max.y
-    f.w = 2 * (max.w / 3)
-    f.h = max.h
-  else
-    -- If not already set to right half, set to right 1/2
-    f.x = max.x + (max.w / 2)
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h
-  end
+    if (f.x == max.x + (max.w / 2)) then
+        -- If already set to right half, set to right 2/3
+        f.x = max.x + (max.w / 3)
+        f.y = max.y
+        f.w = 2 * (max.w / 3)
+        f.h = max.h
+    else
+        -- If not already set to right half, set to right 1/2
+        f.x = max.x + (max.w / 2)
+        f.y = max.y
+        f.w = max.w / 2
+        f.h = max.h
+    end
 
-  win:setFrame(f)
+    win:setFrame(f)
 end
 
 function moveMiddleTwoThirds()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
 
-  f.x = max.x + max.w / 6
-  f.w = 2 * (max.w / 3)
-  f.y = max.y
-  f.h = max.h
+    f.x = max.x + max.w / 6
+    f.w = 2 * (max.w / 3)
+    f.y = max.y
+    f.h = max.h
 
-  win:setFrame(f)
+    win:setFrame(f)
 end
 
 function moveMiddleThird()
-  local win = hs.window.focusedWindow() local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+    local win = hs.window.focusedWindow() local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
 
-  f.x = max.x + max.w / 3
-  f.w = max.w / 3
-  f.y = max.y
-  f.h = max.h
+    f.x = max.x + max.w / 3
+    f.w = max.w / 3
+    f.y = max.y
+    f.h = max.h
 
-  win:setFrame(f)
+    win:setFrame(f)
 end
 
 function maximize()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+    f.x = max.x
+    f.y = max.y
+    f.w = max.w
+    f.h = max.h
+    win:setFrame(f)
 end
 
 -- Move screen to the left
 function moveToScreenLeft()
-  local win = hs.window.focusedWindow()
-  local screen = win:screen()
-  local prevScreen = screen:toWest()
-  win:moveToScreen(prevScreen)
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    local prevScreen = screen:toWest()
+    win:moveToScreen(prevScreen)
 end
 
 -- Move screen to the right
 function moveToScreenRight()
-  local win = hs.window.focusedWindow()
-  local screen = win:screen()
-  local prevScreen = screen:toEast()
-  win:moveToScreen(prevScreen)
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    local prevScreen = screen:toEast()
+    win:moveToScreen(prevScreen)
 end
 
 -- Maximize current window
@@ -235,46 +235,46 @@ end)
 -- https://gist.github.com/liukun/f9ce7d6d14fa45fe9b924a3eed5c3d99
 
 local char_to_hex = function(c)
-  return string.format("%%%02X", string.byte(c))
+    return string.format("%%%02X", string.byte(c))
 end
 
 local function urlencode(url)
-  if url == nil then
-    return
-  end
-  url = url:gsub("\n", "\r\n")
-  url = url:gsub("([^%w ])", char_to_hex)
-  url = url:gsub(" ", "+")
-  return url
+    if url == nil then
+        return
+    end
+    url = url:gsub("\n", "\r\n")
+    url = url:gsub("([^%w ])", char_to_hex)
+    url = url:gsub(" ", "+")
+    return url
 end
 
 local function focusOtherBrowserWindow()
-  hs.application.launchOrFocus("Firefox")
-  local focused = hs.window.focusedWindow()
-  local app = hs.application.find("Firefox")
-  local windows = app:allWindows()
-  if #windows > 1 then
-    _.each(windows, function(window)
-      if window ~= focused then
-        window:focus()
-      end
-    end)
-  end
+    hs.application.launchOrFocus("Firefox")
+    local focused = hs.window.focusedWindow()
+    local app = hs.application.find("Firefox")
+    local windows = app:allWindows()
+    if #windows > 1 then
+        _.each(windows, function(window)
+            if window ~= focused then
+                window:focus()
+            end
+        end)
+    end
 end
 
 local function formattedSearchTermFromClipboard()
-  local term = hs.pasteboard.readString()
-  term = string.sub(term, 0, 100)
-  term = urlencode(term)
-  return term
+    local term = hs.pasteboard.readString()
+    term = string.sub(term, 0, 100)
+    term = urlencode(term)
+    return term
 end
 
 -- Translate term in gTranslate
 hs.hotkey.bind(hypo, "T", function()
-  local term = formattedSearchTermFromClipboard()
-  local url = string.format("https://translate.google.com/?sl=ja&tl=en&text=%s&op=translate", term)
-  focusOtherBrowserWindow()
-  hs.urlevent.openURL(url)
+    local term = formattedSearchTermFromClipboard()
+    local url = string.format("https://translate.google.com/?sl=ja&tl=en&text=%s&op=translate", term)
+    focusOtherBrowserWindow()
+    hs.urlevent.openURL(url)
 end)
 
 -- Kill Apple Music as soon as it opens
