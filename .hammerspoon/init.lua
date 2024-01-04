@@ -87,6 +87,19 @@ function moveMiddleTwoThirds()
   win:setFrame(f)
 end
 
+function moveMiddleThird()
+  local win = hs.window.focusedWindow() local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + max.w / 3
+  f.w = max.w / 3
+  f.y = max.y
+  f.h = max.h
+
+  win:setFrame(f)
+end
+
 function maximize()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -99,6 +112,7 @@ function maximize()
   win:setFrame(f)
 end
 
+-- Move screen to the left
 function moveToScreenLeft()
   local win = hs.window.focusedWindow()
   local screen = win:screen()
@@ -106,6 +120,7 @@ function moveToScreenLeft()
   win:moveToScreen(prevScreen)
 end
 
+-- Move screen to the right
 function moveToScreenRight()
   local win = hs.window.focusedWindow()
   local screen = win:screen()
@@ -118,9 +133,28 @@ hs.hotkey.bind(hypo, "Up", function()
     maximize()
 end)
 
+function fuzzyCompare(a, b)
+    return math.abs(a - b) < 2
+end
+
 -- Move current window to middle 2/3
 hs.hotkey.bind(hypo, "Down", function()
-    moveMiddleTwoThirds()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    -- Fuzzy compare f.x == max.x + max.w / 6
+    if (fuzzyCompare(f.x, max.x + max.w / 6)) then
+        -- If in middle 2/3, move to middle 1/3
+        moveMiddleThird()
+    elseif (fuzzyCompare(f.x, max.x + max.w / 3)) then
+        -- If in middle 1/3, move to middle 2/3
+        moveMiddleTwoThirds()
+    else
+        -- If not in middle, move to middle 2/3
+        moveMiddleTwoThirds()
+    end
 end)
 
 -- Move current window to left half of screen
