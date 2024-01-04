@@ -99,23 +99,37 @@ function maximize()
   win:setFrame(f)
 end
 
+function moveToScreenLeft()
+  local win = hs.window.focusedWindow()
+  local screen = win:screen()
+  local prevScreen = screen:toWest()
+  win:moveToScreen(prevScreen)
+end
+
+function moveToScreenRight()
+  local win = hs.window.focusedWindow()
+  local screen = win:screen()
+  local prevScreen = screen:toEast()
+  win:moveToScreen(prevScreen)
+end
+
 -- Maximize current window
-hs.hotkey.bind(hyper, "K", function()
+hs.hotkey.bind(hypo, "Up", function()
     maximize()
 end)
 
 -- Move current window to middle 2/3
-hs.hotkey.bind(hyper, "J", function()
+hs.hotkey.bind(hypo, "Down", function()
     moveMiddleTwoThirds()
 end)
 
 -- Move current window to left half of screen
-hs.hotkey.bind(hyper, "H", function()
+hs.hotkey.bind(hypo, "Left", function()
     moveLeftHalf()
 end)
 
 -- Move current window to right half of screen
-hs.hotkey.bind(hyper, "L", function()
+hs.hotkey.bind(hypo, "Right", function()
     moveRightHalf()
 end)
 
@@ -141,6 +155,16 @@ end)
 hs.hotkey.bind(hypo, "K", function()
     local win = hs.window.focusedWindow()
     local res = win.focusWindowNorth()
+end)
+
+-- Move current window to screen left
+hs.hotkey.bind(hyper, "Left", function()
+    moveToScreenLeft()
+end)
+
+-- Move current window to screen right
+hs.hotkey.bind(hyper, "Right", function()
+    moveToScreenRight()
 end)
 
 -- Toggle WIFI power
