@@ -6,6 +6,7 @@
 local home = os.getenv("HOME")
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
 local dumper = require('dumper')
+local windowManager = require('./windowmanager')
 local _ = require('underscore')
 
 -- Reload config whenever any *.lua file in ~/.hammerspoon changes
@@ -25,117 +26,14 @@ watcher = hs.pathwatcher.new(home .. "/.hammerspoon/", reloadConfig):start()
 local hyper = { "cmd", "ctrl", "alt" }
 local hypo = { "ctrl", "alt" }
 
--- Open shortcut documentation
-
-function moveLeftHalf()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
-
-    if (max.x == f.x and f.w == max.w / 2) then
-        -- If already set to left half, set to left 2/3
-        f.x = max.x
-        f.y = max.y
-        f.w = 2 * (max.w / 3)
-        f.h = max.h
-    else
-        -- If not already set to left half, set to left 1/2
-        f.x = max.x
-        f.y = max.y
-        f.w = max.w / 2
-        f.h = max.h
-    end
-
-    win:setFrame(f)
-end
-
-function moveRightHalf()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
-
-    if (f.x == max.x + (max.w / 2)) then
-        -- If already set to right half, set to right 2/3
-        f.x = max.x + (max.w / 3)
-        f.y = max.y
-        f.w = 2 * (max.w / 3)
-        f.h = max.h
-    else
-        -- If not already set to right half, set to right 1/2
-        f.x = max.x + (max.w / 2)
-        f.y = max.y
-        f.w = max.w / 2
-        f.h = max.h
-    end
-
-    win:setFrame(f)
-end
-
-function moveMiddleTwoThirds()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
-
-    f.x = max.x + max.w / 6
-    f.w = 2 * (max.w / 3)
-    f.y = max.y
-    f.h = max.h
-
-    win:setFrame(f)
-end
-
-function moveMiddleThird()
-    local win = hs.window.focusedWindow() local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
-
-    f.x = max.x + max.w / 3
-    f.w = max.w / 3
-    f.y = max.y
-    f.h = max.h
-
-    win:setFrame(f)
-end
-
-function maximize()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w
-    f.h = max.h
-    win:setFrame(f)
-end
-
--- Move screen to the left
-function moveToScreenLeft()
-    local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    local prevScreen = screen:toWest()
-    win:moveToScreen(prevScreen)
-end
-
--- Move screen to the right
-function moveToScreenRight()
-    local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    local prevScreen = screen:toEast()
-    win:moveToScreen(prevScreen)
+function fuzzyCompare(a, b)
+    return math.abs(a - b) < 2
 end
 
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()
-    maximize()
+    windowManager.maximize()
 end)
-
-function fuzzyCompare(a, b)
-    return math.abs(a - b) < 2
-end
 
 -- Move current window to middle 2/3
 hs.hotkey.bind(hypo, "Down", function()
@@ -147,24 +45,21 @@ hs.hotkey.bind(hypo, "Down", function()
     -- Fuzzy compare f.x == max.x + max.w / 6
     if (fuzzyCompare(f.x, max.x + max.w / 6)) then
         -- If in middle 2/3, move to middle 1/3
-        moveMiddleThird()
-    elseif (fuzzyCompare(f.x, max.x + max.w / 3)) then
-        -- If in middle 1/3, move to middle 2/3
-        moveMiddleTwoThirds()
+        windowManager.moveMiddleThird()
     else
         -- If not in middle, move to middle 2/3
-        moveMiddleTwoThirds()
+        windowManager.moveMiddleTwoThirds()
     end
 end)
 
 -- Move current window to left half of screen
 hs.hotkey.bind(hypo, "Left", function()
-    moveLeftHalf()
+    windowManager.moveLeftHalf()
 end)
 
 -- Move current window to right half of screen
 hs.hotkey.bind(hypo, "Right", function()
-    moveRightHalf()
+    windowManager.moveRightHalf()
 end)
 
 -- Focus on window to left
@@ -193,12 +88,12 @@ end)
 
 -- Move current window to screen left
 hs.hotkey.bind(hyper, "Left", function()
-    moveToScreenLeft()
+    windowManager.moveToScreenLeft()
 end)
 
 -- Move current window to screen right
 hs.hotkey.bind(hyper, "Right", function()
-    moveToScreenRight()
+    windowManager.moveToScreenRight()
 end)
 
 -- Toggle WIFI power
