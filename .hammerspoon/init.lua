@@ -7,6 +7,7 @@ local home = os.getenv("HOME")
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
 local dumper = require('dumper')
 local windowManager = require('./windowmanager')
+local contexts = require('./contexts')
 local _ = require('underscore')
 
 -- Reload config whenever any *.lua file in ~/.hammerspoon changes
@@ -194,7 +195,7 @@ function selectModeChooser()
         if choice.text == "Execution" then
             hs.alert.show("Execution mode loaded")
         elseif choice.text == "Writing" then
-            hs.alert.show("Writing mode loaded")
+            contexts.loadWritingContext()
         elseif choice.text == "Dev" then
             hs.alert.show("Dev mode loaded")
         end
