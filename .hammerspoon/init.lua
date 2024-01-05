@@ -26,13 +26,31 @@ watcher = hs.pathwatcher.new(home .. "/.hammerspoon/", reloadConfig):start()
 local hyper = { "cmd", "ctrl", "alt" }
 local hypo = { "ctrl", "alt" }
 
+-- Bind hotkey to hammerspoon console
+hs.hotkey.bind(hyper, "\\", function()
+    hs.toggleConsole()
+end)
+
 function fuzzyCompare(a, b)
     return math.abs(a - b) < 2
 end
 
 function bindAppLauncher(key, app)
     hs.hotkey.bind(hyper, key, function()
-        hs.application.launchOrFocus(app)
+        local focused = hs.window.focusedWindow()
+        local focusedApp = focused:application()
+
+        -- Special logic for iTerm2
+        if (app == "iTerm2") then
+            hs.application.launchOrFocus("iTerm")
+        else
+            hs.application.launchOrFocus(app)
+        end
+
+        -- If app is already focused, hide it
+        if (focusedApp:name() == app) then
+            focused:application():hide()
+        end
     end)
 end
 
@@ -44,6 +62,8 @@ bindAppLauncher("G", "GMail")
 bindAppLauncher("C", "GCal")
 bindAppLauncher("L", "LibraryThing")
 bindAppLauncher("N", "Finder")
+bindAppLauncher("T", "Agenda") -- Trello
+bindAppLauncher("M", "iTerm2")
 
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()
@@ -57,7 +77,6 @@ hs.hotkey.bind(hypo, "Down", function()
     local screen = win:screen()
     local max = screen:frame()
 
-    -- Fuzzy compare f.x == max.x + max.w / 6
     if (fuzzyCompare(f.x, max.x + max.w / 6)) then
         -- If in middle 2/3, move to middle 1/3
         windowManager.moveMiddleThird()
@@ -122,7 +141,7 @@ hs.hotkey.bind(hyper, "W", function()
 end)
 
 -- Open New Tab
-hs.hotkey.bind(hyper, "T", function()
+hs.hotkey.bind(hypo, "T", function()
     hs.urlevent.openURL("http://localhost:8282/index.html")
 end)
 
@@ -163,14 +182,6 @@ local function formattedSearchTermFromClipboard()
     term = urlencode(term)
     return term
 end
-
--- Translate term in gTranslate
-hs.hotkey.bind(hypo, "T", function()
-    local term = formattedSearchTermFromClipboard()
-    local url = string.format("https://translate.google.com/?sl=ja&tl=en&text=%s&op=translate", term)
-    focusOtherBrowserWindow()
-    hs.urlevent.openURL(url)
-end)
 
 -- Kill Apple Music as soon as it opens
 function applicationMusicWatcher(appName, eventType, appObject)
