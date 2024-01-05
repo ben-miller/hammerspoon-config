@@ -65,6 +65,7 @@ bindAppLauncher("L", "LibraryThing")
 bindAppLauncher("N", "Finder")
 bindAppLauncher("T", "Agenda") -- Trello
 bindAppLauncher("M", "iTerm2")
+bindAppLauncher(";", "Timer")
 
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()
