@@ -14,6 +14,16 @@ function hideAllWindows()
     end
 end
 
+function rebindTrello(name)
+    -- Unbind "T" hotkey
+    hs.hotkey.disableAll(hyper, "T")
+
+    -- Rebind "T" hotkey to Trello board of current context
+    hs.hotkey.bind(hyper, "T", function()
+        hs.application.launchOrFocus(name)
+    end)
+end
+
 function contexts.loadWritingContext()
 
     -- Hide all windows
@@ -40,6 +50,11 @@ function contexts.loadDevContext()
     local devContextUrl = "obsidian://open?vault=life&file=Areas%2FDevelopment%2FDevelopment%20Context"
     hs.urlevent.openURL(devContextUrl)
     windowmanager.moveToRTK()
+    -- Open and rebind Trello (Development)
+    hs.application.launchOrFocus("Development")
+    windowManager.moveToRTK()
+    windowManager.maximize()
+    rebindTrello("Development")
 
     -- Open Firefox in main screen
     hs.application.launchOrFocus("Firefox")
