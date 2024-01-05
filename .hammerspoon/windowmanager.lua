@@ -1,6 +1,10 @@
 local windowmanager = {
+    -- Keybindings
     hyper = { "cmd", "ctrl", "alt" },
-    hypo = { "ctrl", "alt" }
+    hypo = { "ctrl", "alt" },
+
+    -- App names
+    firefox = "Firefox Developer Edition"
 }
 
 function windowmanager.bindAppLauncher(key, app)
@@ -155,7 +159,7 @@ function windowmanager.moveToScreenRight()
 end
 
 -- Debugging shortcut
-hs.hotkey.bind(hyper, "1", function()
+hs.hotkey.bind(windowmanager.hyper, "1", function()
     hs.alert.show("Debugging shortcut for windowmanager.lua pressed")
 end)
 

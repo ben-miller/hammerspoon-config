@@ -1,10 +1,10 @@
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
-local windowManager = require("windowmanager")
+local w = require("windowmanager")
 
 local contexts = {}
 
-local hyper = windowManager.hyper
-local hypo = windowManager.hypo
+local hyper = w.hyper
+local hypo = w.hypo
 
 function hideAllWindows()
     local allWindows = hs.window.allWindows()
@@ -19,7 +19,7 @@ function rebindTrello(name)
     hs.hotkey.disableAll(hyper, "T")
 
     -- Rebind "T" hotkey to Trello board of current context
-    windowManager.bindAppLauncher("T", name)
+    w.bindAppLauncher("T", name)
 end
 
 function contexts.loadWritingContext()
@@ -31,7 +31,7 @@ function contexts.loadWritingContext()
     local writingContextUrl = "obsidian://open?vault=life&file=Areas%2FLeisure%2FWriting%2FWriting%20Context"
     hs.urlevent.openURL(writingContextUrl)
     hs.application.launchOrFocus("Obsidian")
-    windowManager.maximize()
+    w.maximize()
 
     -- Open Timer app
     hs.application.launchOrFocus("Timer")
@@ -49,29 +49,29 @@ function contexts.loadDevContext()
     hs.application.launchOrFocus("Obsidian")
     local devContextUrl = "obsidian://open?vault=life&file=Areas%2FDevelopment%2FDevelopment%20Context"
     hs.urlevent.openURL(devContextUrl)
-    windowManager.moveToRTK()
-    windowManager.maximize()
+    w.moveToRTK()
+    w.maximize()
 
     -- Open SourceTree
     hs.application.launchOrFocus("SourceTree")
-    windowManager.moveToRTK()
-    windowManager.maximize()
+    w.moveToRTK()
+    w.maximize()
 
     -- Open and rebind Trello (Development)
     hs.application.launchOrFocus("Development")
-    windowManager.moveToRTK()
-    windowManager.maximize()
+    w.moveToRTK()
+    w.maximize()
     rebindTrello("Development")
 
     -- Open Firefox in main screen
-    hs.application.launchOrFocus("Firefox")
-    windowManager.moveToRetina()
-    windowManager.maximize()
+    hs.application.launchOrFocus(w.firefox)
+    w.moveToRetina()
+    w.maximize()
 
     -- Open iTerm
     hs.application.launchOrFocus("iTerm")
-    windowManager.moveToLG()
-    windowManager.maximize()
+    w.moveToLG()
+    w.maximize()
 
     -- Show alert
     hs.alert.show("Dev context loaded")

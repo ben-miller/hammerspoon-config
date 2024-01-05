@@ -21,12 +21,12 @@ watcher = hs.pathwatcher.new(home .. "/.hammerspoon/", reloadConfig):start()
 
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
 local dumper = require('dumper')
-local windowManager = require('./windowmanager')
+local w = require('./windowmanager')
 local contexts = require('./contexts')
 local _ = require('underscore')
 
-local hyper = windowManager.hyper
-local hypo = windowManager.hypo
+local hyper = w.hyper
+local hypo = w.hypo
 
 -- Bind hotkey to hammerspoon console
 hs.hotkey.bind(hyper, "\\", function()
@@ -37,22 +37,22 @@ function fuzzyCompare(a, b)
     return math.abs(a - b) < 2
 end
 
-windowManager.bindAppLauncher("S", "Stickies")
-windowManager.bindAppLauncher("/", "Firefox")
-windowManager.bindAppLauncher("O", "Obsidian")
-windowManager.bindAppLauncher("I", "IntelliJ IDEA")
-windowManager.bindAppLauncher("G", "GMail")
-windowManager.bindAppLauncher("C", "GCal")
-windowManager.bindAppLauncher("L", "LibraryThing")
-windowManager.bindAppLauncher("F", "Finder")
-windowManager.bindAppLauncher("T", "Agenda") -- Trello
-windowManager.bindAppLauncher("M", "iTerm2")
-windowManager.bindAppLauncher(";", "Timer")
-windowManager.bindAppLauncher("E", "SourceTree")
+w.bindAppLauncher("S", "Stickies")
+w.bindAppLauncher("/", w.firefox)
+w.bindAppLauncher("O", "Obsidian")
+w.bindAppLauncher("I", "IntelliJ IDEA")
+w.bindAppLauncher("G", "GMail")
+w.bindAppLauncher("C", "GCal")
+w.bindAppLauncher("L", "LibraryThing")
+w.bindAppLauncher("F", "Finder")
+w.bindAppLauncher("T", "Agenda") -- Trello
+w.bindAppLauncher("M", "iTerm2")
+w.bindAppLauncher(";", "Timer")
+w.bindAppLauncher("E", "SourceTree")
 
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()
-    windowManager.maximize()
+    w.maximize()
 end)
 
 -- Move current window to middle 2/3
@@ -64,21 +64,21 @@ hs.hotkey.bind(hypo, "Down", function()
 
     if (fuzzyCompare(f.x, max.x + max.w / 6)) then
         -- If in middle 2/3, move to middle 1/3
-        windowManager.moveMiddleThird()
+        w.moveMiddleThird()
     else
         -- If not in middle, move to middle 2/3
-        windowManager.moveMiddleTwoThirds()
+        w.moveMiddleTwoThirds()
     end
 end)
 
 -- Move current window to left half of screen
 hs.hotkey.bind(hypo, "Left", function()
-    windowManager.moveLeftHalf()
+    w.moveLeftHalf()
 end)
 
 -- Move current window to right half of screen
 hs.hotkey.bind(hypo, "Right", function()
-    windowManager.moveRightHalf()
+    w.moveRightHalf()
 end)
 
 -- Focus on window to left
@@ -95,12 +95,12 @@ end)
 
 -- Move current window to screen left
 hs.hotkey.bind(hyper, "Left", function()
-    windowManager.moveToScreenLeft()
+    w.moveToScreenLeft()
 end)
 
 -- Move current window to screen right
 hs.hotkey.bind(hyper, "Right", function()
-    windowManager.moveToScreenRight()
+    w.moveToScreenRight()
 end)
 
 -- Toggle WIFI power
@@ -136,9 +136,9 @@ local function urlencode(url)
 end
 
 local function focusOtherBrowserWindow()
-    hs.application.launchOrFocus("Firefox")
+    hs.application.launchOrFocus(w.firefox)
     local focused = hs.window.focusedWindow()
-    local app = hs.application.find("Firefox")
+    local app = hs.application.find(w.firefox)
     local windows = app:allWindows()
     if #windows > 1 then
         _.each(windows, function(window)
