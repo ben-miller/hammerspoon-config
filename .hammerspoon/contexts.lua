@@ -53,5 +53,10 @@ function contexts.loadDevContext()
     hs.alert.show("Dev context loaded")
 end
 
+-- Debugging shortcut
+hs.hotkey.bind(hyper, "2", function()
+    hs.alert.show("Debugging shortcut for contexts.lua pressed")
+end)
+
 return contexts
 
