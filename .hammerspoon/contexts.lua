@@ -32,6 +32,8 @@ function contexts.loadWritingContext()
     -- Open writing context in Obsidian
     local writingContextUrl = "obsidian://open?vault=life&file=Areas%2FLeisure%2FWriting%2FWriting%20Context"
     hs.urlevent.openURL(writingContextUrl)
+    hs.application.launchOrFocus("Obsidian")
+    windowManager.maximize()
 
     -- Open Timer app
     hs.application.launchOrFocus("Timer")
@@ -49,7 +51,9 @@ function contexts.loadDevContext()
     hs.application.launchOrFocus("Obsidian")
     local devContextUrl = "obsidian://open?vault=life&file=Areas%2FDevelopment%2FDevelopment%20Context"
     hs.urlevent.openURL(devContextUrl)
-    windowmanager.moveToRTK()
+    windowManager.moveToRTK()
+    windowManager.maximize()
+
     -- Open SourceTree
     hs.application.launchOrFocus("SourceTree")
     windowManager.moveToRTK()
@@ -63,11 +67,13 @@ function contexts.loadDevContext()
 
     -- Open Firefox in main screen
     hs.application.launchOrFocus("Firefox")
-    windowmanager.moveToRetina()
+    windowManager.moveToRetina()
+    windowManager.maximize()
 
     -- Open iTerm
     hs.application.launchOrFocus("iTerm")
-    windowmanager.moveToLG()
+    windowManager.moveToLG()
+    windowManager.maximize()
 
     -- Show alert
     hs.alert.show("Dev context loaded")
