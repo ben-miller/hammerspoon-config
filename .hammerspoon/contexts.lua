@@ -19,9 +19,7 @@ function rebindTrello(name)
     hs.hotkey.disableAll(hyper, "T")
 
     -- Rebind "T" hotkey to Trello board of current context
-    hs.hotkey.bind(hyper, "T", function()
-        hs.application.launchOrFocus(name)
-    end)
+    windowManager.bindAppLauncher("T", name)
 end
 
 function contexts.loadWritingContext()
