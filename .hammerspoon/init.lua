@@ -37,37 +37,18 @@ function fuzzyCompare(a, b)
     return math.abs(a - b) < 2
 end
 
-function bindAppLauncher(key, app)
-    hs.hotkey.bind(hyper, key, function()
-        local focused = hs.window.focusedWindow()
-        local focusedApp = focused:application()
-
-        -- Special logic for iTerm2
-        if (app == "iTerm2") then
-            hs.application.launchOrFocus("iTerm")
-        else
-            hs.application.launchOrFocus(app)
-        end
-
-        -- If app is already focused, hide it
-        if (focusedApp:name() == app) then
-            focused:application():hide()
-        end
-    end)
-end
-
-bindAppLauncher("S", "Stickies")
-bindAppLauncher("/", "Firefox")
-bindAppLauncher("O", "Obsidian")
-bindAppLauncher("I", "IntelliJ IDEA")
-bindAppLauncher("G", "GMail")
-bindAppLauncher("C", "GCal")
-bindAppLauncher("L", "LibraryThing")
-bindAppLauncher("F", "Finder")
-bindAppLauncher("T", "Agenda") -- Trello
-bindAppLauncher("M", "iTerm2")
-bindAppLauncher(";", "Timer")
-bindAppLauncher("E", "SourceTree")
+windowManager.bindAppLauncher("S", "Stickies")
+windowManager.bindAppLauncher("/", "Firefox")
+windowManager.bindAppLauncher("O", "Obsidian")
+windowManager.bindAppLauncher("I", "IntelliJ IDEA")
+windowManager.bindAppLauncher("G", "GMail")
+windowManager.bindAppLauncher("C", "GCal")
+windowManager.bindAppLauncher("L", "LibraryThing")
+windowManager.bindAppLauncher("F", "Finder")
+windowManager.bindAppLauncher("T", "Agenda") -- Trello
+windowManager.bindAppLauncher("M", "iTerm2")
+windowManager.bindAppLauncher(";", "Timer")
+windowManager.bindAppLauncher("E", "SourceTree")
 
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()

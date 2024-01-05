@@ -3,6 +3,26 @@ local windowmanager = {
     hypo = { "ctrl", "alt" }
 }
 
+function windowmanager.bindAppLauncher(key, app)
+    hs.hotkey.bind(windowmanager.hyper, key, function()
+        local focused = hs.window.focusedWindow()
+        local focusedApp = focused:application()
+
+        -- Special logic for iTerm2
+        if (app == "iTerm2") then
+            hs.application.launchOrFocus("iTerm")
+        else
+            hs.application.launchOrFocus(app)
+        end
+
+        -- If app is already focused, hide it
+        if (focusedApp:name() == app) then
+            focused:application():hide()
+        end
+    end)
+end
+
+
 -- Move window to display with name
 function windowmanager.moveToDisplay(displayName)
     local win = hs.window.focusedWindow()
