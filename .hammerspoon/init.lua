@@ -108,18 +108,6 @@ hs.hotkey.bind(hypo, "L", function()
     local res = win.focusWindowEast()
 end)
 
--- Focus on window below
-hs.hotkey.bind(hypo, "J", function()
-    local win = hs.window.focusedWindow()
-    local res = win.focusWindowSouth()
-end)
-
--- Focus on window above
-hs.hotkey.bind(hypo, "K", function()
-    local win = hs.window.focusedWindow()
-    local res = win.focusWindowNorth()
-end)
-
 -- Move current window to screen left
 hs.hotkey.bind(hyper, "Left", function()
     windowManager.moveToScreenLeft()
