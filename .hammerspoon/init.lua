@@ -187,5 +187,34 @@ end
 appMusicWatcher = hs.application.watcher.new(applicationMusicWatcher)
 appMusicWatcher:start()
 
+-- Show chooser for selecting between 'Execution', 'Writing', and 'Dev' modes
+function selectModeChooser()
+    return hs.chooser.new(function(choice)
+        if not choice then return end
+        if choice.text == "Execution" then
+            hs.alert.show("Execution mode loaded")
+        elseif choice.text == "Writing" then
+            hs.alert.show("Writing mode loaded")
+        elseif choice.text == "Dev" then
+            hs.alert.show("Dev mode loaded")
+        end
+    end):choices({
+        {text="Execution"},
+        {text="Writing"},
+        {text="Dev"},
+    })
+end
+
+-- On hyper+space, show select mode dialog. If already in select mode, then
+-- if hyper+space is pressed again, hide the dialog.
+local chooser = selectModeChooser()
+hs.hotkey.bind(hyper, "space", function()
+    if (chooser:isVisible()) then
+        chooser:hide()
+    else
+        chooser:show()
+    end
+end)
+
 -- Announce that config has changed
 hs.alert.show("Config loaded")
