@@ -50,6 +50,11 @@ function contexts.loadDevContext()
     local devContextUrl = "obsidian://open?vault=life&file=Areas%2FDevelopment%2FDevelopment%20Context"
     hs.urlevent.openURL(devContextUrl)
     windowmanager.moveToRTK()
+    -- Open SourceTree
+    hs.application.launchOrFocus("SourceTree")
+    windowManager.moveToRTK()
+    windowManager.maximize()
+
     -- Open and rebind Trello (Development)
     hs.application.launchOrFocus("Development")
     windowManager.moveToRTK()
