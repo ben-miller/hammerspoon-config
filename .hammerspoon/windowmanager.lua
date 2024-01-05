@@ -135,8 +135,8 @@ function windowmanager.moveToScreenRight()
 end
 
 -- Debugging shortcut
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "1", function()
-    hs.alert.show("Debugging shortcut pressed")
+hs.hotkey.bind(hyper, "1", function()
+    hs.alert.show("Debugging shortcut for windowmanager.lua pressed")
 end)
 
 return windowmanager
