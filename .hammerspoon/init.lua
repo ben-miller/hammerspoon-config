@@ -199,7 +199,7 @@ function selectModeChooser()
         elseif choice.text == "Writing" then
             contexts.loadWritingContext()
         elseif choice.text == "Dev" then
-            hs.alert.show("Dev mode loaded")
+            contexts.loadDevContext()
         end
     end):choices({
         {text="Execution"},
