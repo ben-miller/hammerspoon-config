@@ -30,6 +30,20 @@ function fuzzyCompare(a, b)
     return math.abs(a - b) < 2
 end
 
+function bindAppLauncher(key, app)
+    hs.hotkey.bind(hyper, key, function()
+        hs.application.launchOrFocus(app)
+    end)
+end
+
+bindAppLauncher("S", "Stickies")
+bindAppLauncher("F", "Firefox")
+bindAppLauncher("O", "Obsidian")
+bindAppLauncher("I", "IntelliJ IDEA")
+bindAppLauncher("G", "GMail")
+bindAppLauncher("C", "GCal")
+bindAppLauncher("L", "LibraryThing")
+
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()
     windowManager.maximize()
@@ -109,21 +123,6 @@ end)
 -- Open New Tab
 hs.hotkey.bind(hyper, "T", function()
     hs.urlevent.openURL("http://localhost:8282/index.html")
-end)
-
--- Open Stickies
-hs.hotkey.bind(hyper, "S", function()
-    hs.application.launchOrFocus("Stickies")
-end)
-
--- Open Browser
-hs.hotkey.bind(hyper, "B", function()
-    hs.application.launchOrFocus("Firefox")
-end)
-
--- Open Intellij
-hs.hotkey.bind(hyper, "I", function()
-    hs.application.launchOrFocus("IntelliJ IDEA")
 end)
 
 -- URL encoding
