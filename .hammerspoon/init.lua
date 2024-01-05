@@ -1,7 +1,3 @@
--- TODO Shortcut for own HS config documentation
--- TODO Shortcut for editing HS config
--- TODO Shortcut for HS console
--- TODO Shortcut for reloading HS
 
 -- Reload config whenever any *.lua file in ~/.hammerspoon changes
 -- This needs to be loaded before the require statements below.
@@ -38,7 +34,7 @@ function fuzzyCompare(a, b)
 end
 
 w.bindAppLauncher("S", "Stickies")
-w.bindAppLauncher("/", w.firefox)
+w.bindAppLauncher(".", w.firefox)
 w.bindAppLauncher("O", "Obsidian")
 w.bindAppLauncher("I", "IntelliJ IDEA")
 w.bindAppLauncher("G", "GMail")
