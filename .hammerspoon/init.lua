@@ -57,13 +57,13 @@ function bindAppLauncher(key, app)
 end
 
 bindAppLauncher("S", "Stickies")
-bindAppLauncher("F", "Firefox")
+bindAppLauncher("/", "Firefox")
 bindAppLauncher("O", "Obsidian")
 bindAppLauncher("I", "IntelliJ IDEA")
 bindAppLauncher("G", "GMail")
 bindAppLauncher("C", "GCal")
 bindAppLauncher("L", "LibraryThing")
-bindAppLauncher("N", "Finder")
+bindAppLauncher("F", "Finder")
 bindAppLauncher("T", "Agenda") -- Trello
 bindAppLauncher("M", "iTerm2")
 bindAppLauncher(";", "Timer")
