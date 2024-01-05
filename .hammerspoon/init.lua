@@ -43,6 +43,7 @@ bindAppLauncher("I", "IntelliJ IDEA")
 bindAppLauncher("G", "GMail")
 bindAppLauncher("C", "GCal")
 bindAppLauncher("L", "LibraryThing")
+bindAppLauncher("N", "Finder")
 
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()
