@@ -1,5 +1,5 @@
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
-local windowmanager = require("windowmanager")
+local windowManager = require("windowmanager")
 
 local contexts = {}
 
