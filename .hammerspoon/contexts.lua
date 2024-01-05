@@ -30,7 +30,6 @@ function contexts.loadWritingContext()
 end
 
 function contexts.loadDevContext()
-    windowmanager.printScreens()
 
     -- Hide all windows
     hideAllWindows()
