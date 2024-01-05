@@ -1,5 +1,35 @@
 local windowmanager = {}
 
+-- Move window to display with name
+function windowmanager.moveToDisplay(displayName)
+    local win = hs.window.focusedWindow()
+    local screen = hs.screen.findByName(displayName)
+    win:moveToScreen(screen)
+end
+
+-- Move window to retina display
+function windowmanager.moveToRetina()
+    windowmanager.moveToDisplay("Built-in Retina Display")
+end
+
+-- Move window to LG display
+function windowmanager.moveToLG()
+    windowmanager.moveToDisplay("LG HDR 4K")
+end
+
+-- Move window to RTK display
+function windowmanager.moveToRTK()
+    windowmanager.moveToDisplay("RTK UHD HDR")
+end
+
+-- Print all screens.
+function windowmanager.printScreens()
+    local screens = hs.screen.allScreens()
+    for i, screen in ipairs(screens) do
+        print(i, screen:name())
+    end
+end
+
 function windowmanager.moveLeftHalf()
     local win = hs.window.focusedWindow()
     local f = win:frame()
@@ -100,6 +130,11 @@ function windowmanager.moveToScreenRight()
     local prevScreen = screen:toEast()
     win:moveToScreen(prevScreen)
 end
+
+-- Debugging shortcut
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "1", function()
+    hs.alert.show("Debugging shortcut pressed")
+end)
 
 return windowmanager
 
