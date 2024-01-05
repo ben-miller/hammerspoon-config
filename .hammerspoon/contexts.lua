@@ -1,6 +1,9 @@
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
+local windowmanager = require("windowmanager")
 
 local contexts = {}
+
+-- Get 
 
 function hideAllWindows()
     local allWindows = hs.window.allWindows()
@@ -12,7 +15,7 @@ end
 
 function contexts.loadWritingContext()
 
-    -- Hide all apps
+    -- Hide all windows
     hideAllWindows()
 
     -- Open writing context in Obsidian
@@ -24,6 +27,30 @@ function contexts.loadWritingContext()
 
     -- Show alert
     hs.alert.show("Writing context loaded")
+end
+
+function contexts.loadDevContext()
+    windowmanager.printScreens()
+
+    -- Hide all windows
+    hideAllWindows()
+
+    -- Open dev context in Obsidian
+    hs.application.launchOrFocus("Obsidian")
+    local devContextUrl = "obsidian://open?vault=life&file=Areas%2FDevelopment%2FDevelopment%20Context"
+    hs.urlevent.openURL(devContextUrl)
+    windowmanager.moveToRTK()
+
+    -- Open Firefox in main screen
+    hs.application.launchOrFocus("Firefox")
+    windowmanager.moveToRetina()
+
+    -- Open iTerm
+    hs.application.launchOrFocus("iTerm")
+    windowmanager.moveToLG()
+
+    -- Show alert
+    hs.alert.show("Dev context loaded")
 end
 
 return contexts
