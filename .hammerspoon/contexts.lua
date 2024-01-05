@@ -3,7 +3,8 @@ local windowmanager = require("windowmanager")
 
 local contexts = {}
 
--- Get 
+local hyper = windowManager.hyper
+local hypo = windowManager.hypo
 
 function hideAllWindows()
     local allWindows = hs.window.allWindows()

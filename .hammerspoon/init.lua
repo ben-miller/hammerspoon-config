@@ -25,8 +25,8 @@ local windowManager = require('./windowmanager')
 local contexts = require('./contexts')
 local _ = require('underscore')
 
-local hyper = { "cmd", "ctrl", "alt" }
-local hypo = { "ctrl", "alt" }
+local hyper = windowManager.hyper
+local hypo = windowManager.hypo
 
 -- Bind hotkey to hammerspoon console
 hs.hotkey.bind(hyper, "\\", function()

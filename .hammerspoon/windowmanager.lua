@@ -1,4 +1,7 @@
-local windowmanager = {}
+local windowmanager = {
+    hyper = { "cmd", "ctrl", "alt" },
+    hypo = { "ctrl", "alt" }
+}
 
 -- Move window to display with name
 function windowmanager.moveToDisplay(displayName)
