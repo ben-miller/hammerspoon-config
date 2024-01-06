@@ -250,7 +250,21 @@ hs.hotkey.bind(hyper, "space", function()
     if (chooser:isVisible()) then
         chooser:hide()
     else
-        chooser:show()
+        -- Set coordinates of chooser to be in middle of main screen
+        local mainScreen = hs.screen.primaryScreen()
+        local mainFrame = mainScreen:frame()
+
+        -- Set width to 30% of screen width
+        chooser:width(30)
+
+        -- Calculate the position to center the chooser
+        local x = mainFrame.x + 400
+        local y = mainFrame.y + 200
+
+        hs.alert.show("Coordinates: " .. x .. ", " .. y)
+
+        -- Show in main screen
+        chooser:show({x = x, y = y})
     end
 end)
 
