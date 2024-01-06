@@ -29,6 +29,52 @@ hs.hotkey.bind(hyper, "\\", function()
     hs.toggleConsole()
 end)
 
+-- Shortcuts modal
+local shortcutModal = nil
+function showShortcuts()
+    if not shortcutModal then
+        local shortcuts = "file://" .. home .. "/.hammerspoon/shortcuts/sample.html"
+
+        -- Get built-in retina display dimensions
+        local mainScreen = hs.screen.mainScreen()
+        local screenFrame = mainScreen:frame()
+
+        local webViewFrame = {
+            x = screenFrame.x + 100,
+            y = screenFrame.y + 100,
+            w = screenFrame.w - 200,
+            h = screenFrame.h - 200
+        }
+
+        shortcutModal = hs.webview.new(webViewFrame)
+
+        -- Set to floating
+        shortcutModal:level(hs.drawing.windowLevels.floating)
+
+        -- Make it semi-transparent
+        shortcutModal:alpha(0.8)
+
+        -- Center it on the "Built-in Retina Display"
+        local mainScreen = hs.screen.mainScreen()
+        local mainRes = mainScreen:fullFrame()
+        local modalFrame = shortcutModal:frame()
+        modalFrame.x = (mainRes.w - modalFrame.w) / 2
+
+        shortcutModal:url(shortcuts) -- Update with the correct path
+        shortcutModal:windowStyle("utility")
+        shortcutModal:windowTitle("Shortcuts")
+        shortcutModal:closeOnEscape(true)
+    end
+    shortcutModal:show()
+end
+function hideShortcuts()
+    if shortcutModal then
+        shortcutModal:hide()
+    end
+end
+hs.hotkey.bind(hyper, "/", showShortcuts, hideShortcuts)
+
+-- Utility functions
 function fuzzyCompare(a, b)
     return math.abs(a - b) < 2
 end
