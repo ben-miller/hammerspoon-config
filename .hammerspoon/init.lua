@@ -19,6 +19,7 @@ local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
 local dumper = require('dumper')
 local C = require('./constants')
 local w = require('./windowmanager')
+local applications = require('./applications')
 local contexts = require('./contexts')
 local shortcuts = require('./shortcuts')
 local _ = require('underscore')
@@ -126,18 +127,12 @@ function fuzzyCompare(a, b)
     return math.abs(a - b) < 2
 end
 
-w.bindAppLauncher("S", "Stickies")
-w.bindAppLauncher(".", C.Firefox)
-w.bindAppLauncher("O", "Obsidian")
-w.bindAppLauncher("I", "IntelliJ IDEA")
-w.bindAppLauncher("G", "GMail")
-w.bindAppLauncher("C", "GCal")
-w.bindAppLauncher("L", "LibraryThing")
-w.bindAppLauncher("F", "Finder")
-w.bindAppLauncher("T", "Agenda") -- Trello
-w.bindAppLauncher("M", "iTerm2")
-w.bindAppLauncher(";", "Timer")
-w.bindAppLauncher("E", "SourceTree")
+-- For each application in applications.all,
+-- bind app launcher.
+for i,app in pairs(applications.all) do
+    hs.alert.show("Application: " .. app.shortName)
+    w.bindAppLauncher(app.hotkey, app.appName)
+end
 
 -- Maximize current window
 hs.hotkey.bind(hypo, "Up", function()
