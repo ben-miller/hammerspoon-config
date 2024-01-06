@@ -58,5 +58,63 @@ function shortcuts.htmlFileForApp(shortName)
     return home .. "/src/infra/config/hammerspoon/.hammerspoon/shortcuts/" .. shortName .. ".html"
 end
 
+function shortcuts.showShortcuts()
+    -- For each visible window, show a shortcuts modal
+    for i,win in ipairs(listVisibleWindows()) do
+
+        -- Get screen of window
+        local screen = win:screen()
+
+        -- Show shortcuts modal for screen
+        showShortcutsForScreen(screen, win)
+    end
+end
+
+function shortcuts.getShortcutsModalForScreen(screen, window)
+    local screenFrame = screen:frame()
+
+    local webViewFrame = {
+        x = screenFrame.x + 100,
+        y = screenFrame.y + 100,
+        w = screenFrame.w - 200,
+        h = screenFrame.h - 200
+    }
+
+    local app = window:application()
+
+    -- get app name
+    local appName = app:name()
+
+    -- TODO: Differentiate between own and hs concept of application
+    local myApp = applications.getApplicationByAppName(appName)
+
+    if not myApp then
+        return nil
+    end
+
+    local htmlFileForApp = shortcuts.htmlFileForApp(myApp.shortName)
+
+    local shortcutModal = hs.webview.new(webViewFrame)
+
+    -- Set to floating
+    shortcutModal:level(hs.drawing.windowLevels.floating)
+
+    -- Make it semi-transparent
+    shortcutModal:alpha(0.9)
+
+    -- Center it on the "Built-in Retina Display"
+    local mainScreen = hs.screen.mainScreen()
+    local mainRes = mainScreen:fullFrame()
+    local modalFrame = shortcutModal:frame()
+    modalFrame.x = (mainRes.w - modalFrame.w) / 2
+
+    shortcutModal:url("file://" .. htmlFileForApp) -- Update with the correct path
+    shortcutModal:windowStyle("utility")
+    shortcutModal:windowTitle("Shortcuts")
+    shortcutModal:closeOnEscape(true)
+
+    return shortcutModal
+end
+
 return shortcuts
 

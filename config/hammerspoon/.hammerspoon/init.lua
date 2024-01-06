@@ -32,9 +32,6 @@ hs.hotkey.bind(hyper, "\\", function()
     hs.toggleConsole()
 end)
 
--- Generate HTML for shortcuts modals
-shortcuts.generateHtml()
-
 function getMostVisibleWindowOnScreen(screen)
     local windowFilter = hs.window.filter.new()
     windowFilter:setScreens(screen:id())
@@ -63,6 +60,7 @@ function listVisibleWindows()
     return windows
 end
 
+-- Shortcuts modal
 function showShortcuts()
     -- For each visible window, show a shortcuts modal
     for i,win in ipairs(listVisibleWindows()) do
@@ -75,58 +73,14 @@ function showShortcuts()
     end
 
 end
-
--- Shortcuts modal
 local shortcutModalsByScreen = {}
 function showShortcutsForScreen(screen, window)
     if not shortcutModalsByScreen[screen:id()] then
-
-        --local shortcuts = "file://" .. home .. "/.hammerspoon/shortcuts/sample.html"
-
-        -- Get built-in retina display dimensions
-        local screenFrame = screen:frame()
-
-        local webViewFrame = {
-            x = screenFrame.x + 100,
-            y = screenFrame.y + 100,
-            w = screenFrame.w - 200,
-            h = screenFrame.h - 200
-        }
-
-        local app = window:application()
-
-        -- get app name
-        local appName = app:name()
-
-        -- TODO: Differentiate between own and hs concept of application
-        local myApp = applications.getApplicationByAppName(appName)
-
-        if not myApp then
-            --hs.alert.show("No app found for " .. appName)
+        local shortcutModal = shortcuts.getShortcutsModalForScreen(screen, window)
+        if not shortcutModal then
             return
         end
-
-        local htmlFileForApp = shortcuts.htmlFileForApp(myApp.shortName)
-
-        local shortcutModal = hs.webview.new(webViewFrame)
         shortcutModalsByScreen[screen:id()] = shortcutModal
-
-        -- Set to floating
-        shortcutModal:level(hs.drawing.windowLevels.floating)
-
-        -- Make it semi-transparent
-        shortcutModal:alpha(0.9)
-
-        -- Center it on the "Built-in Retina Display"
-        local mainScreen = hs.screen.mainScreen()
-        local mainRes = mainScreen:fullFrame()
-        local modalFrame = shortcutModal:frame()
-        modalFrame.x = (mainRes.w - modalFrame.w) / 2
-
-        shortcutModal:url("file://" .. htmlFileForApp) -- Update with the correct path
-        shortcutModal:windowStyle("utility")
-        shortcutModal:windowTitle("Shortcuts")
-        shortcutModal:closeOnEscape(true)
     end
     shortcutModalsByScreen[screen:id()]:show()
 end
