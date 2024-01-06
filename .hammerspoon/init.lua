@@ -20,6 +20,7 @@ local dumper = require('dumper')
 local C = require('./constants')
 local w = require('./windowmanager')
 local contexts = require('./contexts')
+local shortcuts = require('./shortcuts')
 local _ = require('underscore')
 
 local hyper = w.hyper
@@ -29,6 +30,9 @@ local hypo = w.hypo
 hs.hotkey.bind(hyper, "\\", function()
     hs.toggleConsole()
 end)
+
+-- Generate HTML for shortcuts modals
+shortcuts.generateHtml()
 
 -- Shortcuts modal
 local shortcutModal = nil
