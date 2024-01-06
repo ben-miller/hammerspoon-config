@@ -132,7 +132,7 @@ applications.all = {
     }),
 
     -- SourceTree
-    sourcetree = Application("sourcetree", "SourceTree", "E", {
+    sourcetree = Application("sourcetree", "Sourcetree", "E", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
@@ -140,7 +140,7 @@ applications.all = {
     }),
 
     -- Tidal
-    sourcetree = Application("tidal", "TIDAL", "Z", {
+    tidal = Application("tidal", "TIDAL", "Z", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
