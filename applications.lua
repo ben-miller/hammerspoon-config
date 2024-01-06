@@ -145,6 +145,14 @@ applications.all = {
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
         Shortcut("Close Window", "Cmd-Shift-W", nil)
+    }),
+
+    -- Trello (dev)
+    trello_dev = Application("trello_dev", "Development", "D", {
+        Shortcut("New Tab", "Cmd-T", nil),
+        Shortcut("New Window", "Cmd-N", nil),
+        Shortcut("Close Tab", "Cmd-W", nil),
+        Shortcut("Close Window", "Cmd-Shift-W", nil)
     })
 }
 

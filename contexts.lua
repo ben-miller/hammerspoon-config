@@ -118,7 +118,7 @@ function contexts.loadExecutionContext()
     if sourcetree then
         win = sourcetree:mainWindow()
         w.moveToRTK(win)
-        w.maximize(win)
+        w.moveRightHalf(win)
     end
 
     -- Open and rebind Trello (Agenda)
@@ -136,7 +136,7 @@ function contexts.loadExecutionContext()
     local obsidian = hs.application.find("Obsidian")
     win = obsidian:mainWindow()
     w.moveToRTK(win)
-    w.maximize(win)
+    w.moveLeftHalf(win)
 
     -- Open Firefox in LG
     hs.application.launchOrFocus(C.Firefox)

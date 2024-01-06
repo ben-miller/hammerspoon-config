@@ -69,8 +69,10 @@ function windowmanager.printScreens()
     end
 end
 
-function windowmanager.moveLeftHalf()
-    local win = hs.window.focusedWindow()
+function windowmanager.moveLeftHalf(win)
+    if not win then
+        win = hs.window.focusedWindow()
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -92,8 +94,10 @@ function windowmanager.moveLeftHalf()
     win:setFrame(f)
 end
 
-function windowmanager.moveRightHalf()
-    local win = hs.window.focusedWindow()
+function windowmanager.moveRightHalf(win)
+    if not win then
+        win = hs.window.focusedWindow()
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
