@@ -3,6 +3,11 @@ local windowmanager = {
     hyper = { "cmd", "ctrl", "alt" },
     hypo = { "ctrl", "alt" },
 
+    -- Display names
+    builtinRetina = "Built-in Retina Display",
+    lg = "LG HDR 4K",
+    rtk = "RTK UHD HDR",
+
     -- App names
     firefox = "Firefox Developer Edition"
 }
@@ -36,17 +41,17 @@ end
 
 -- Move window to retina display
 function windowmanager.moveToRetina()
-    windowmanager.moveToDisplay("Built-in Retina Display")
+    windowmanager.moveToDisplay(windowmanager.builtinRetina)
 end
 
 -- Move window to LG display
 function windowmanager.moveToLG()
-    windowmanager.moveToDisplay("LG HDR 4K")
+    windowmanager.moveToDisplay(windowmanager.lg)
 end
 
 -- Move window to RTK display
 function windowmanager.moveToRTK()
-    windowmanager.moveToDisplay("RTK UHD HDR")
+    windowmanager.moveToDisplay(windowmanager.rtk)
 end
 
 -- Print all screens.
