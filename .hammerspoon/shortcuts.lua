@@ -6,7 +6,6 @@ local home = os.getenv("HOME")
 -- Take an application and output a dummy html file into ./shortcuts
 -- This file will be named based on the application name.
 function shortcuts.generateHtml()
-    hs.alert.show("Applications: " .. #applications.all)
 
     -- iterate over all applications
     for _, app in pairs(applications.all) do
