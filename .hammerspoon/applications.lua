@@ -37,7 +37,6 @@ end
 
 -- Get app by app name
 function applications.getApplicationByAppName(appName)
-    hs.alert.show("Looking for " .. appName)
   for _, app in pairs(applications.all) do
     if app.appName == appName then
       return app
@@ -134,6 +133,14 @@ applications.all = {
 
     -- SourceTree
     sourcetree = Application("sourcetree", "SourceTree", "E", {
+        Shortcut("New Tab", "Cmd-T", nil),
+        Shortcut("New Window", "Cmd-N", nil),
+        Shortcut("Close Tab", "Cmd-W", nil),
+        Shortcut("Close Window", "Cmd-Shift-W", nil)
+    }),
+
+    -- Tidal
+    sourcetree = Application("tidal", "Tidal", "Z", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
