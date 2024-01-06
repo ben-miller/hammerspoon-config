@@ -15,6 +15,9 @@ local windowmanager = {
 function windowmanager.bindAppLauncher(key, app)
     hs.hotkey.bind(windowmanager.hyper, key, function()
         local focused = hs.window.focusedWindow()
+        if not focused then
+            return
+        end
         local focusedApp = focused:application()
 
         -- If app is already focused, hide it
