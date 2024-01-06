@@ -71,16 +71,17 @@ function showShortcuts()
         local screen = win:screen()
 
         -- Show shortcuts modal for screen
-        showShortcutsForScreen(screen)
+        showShortcutsForScreen(screen, win)
     end
 
 end
 
 -- Shortcuts modal
 local shortcutModalsByScreen = {}
-function showShortcutsForScreen(screen)
+function showShortcutsForScreen(screen, window)
     if not shortcutModalsByScreen[screen:id()] then
-        local shortcuts = "file://" .. home .. "/.hammerspoon/shortcuts/sample.html"
+
+        --local shortcuts = "file://" .. home .. "/.hammerspoon/shortcuts/sample.html"
 
         -- Get built-in retina display dimensions
         local screenFrame = screen:frame()
@@ -91,6 +92,16 @@ function showShortcutsForScreen(screen)
             w = screenFrame.w - 200,
             h = screenFrame.h - 200
         }
+
+        local app = window:application()
+
+        -- get app name
+        local appName = app:name()
+
+        -- TODO: Differentiate between own and hs concept of application
+        local myApp = applications.getApplicationByAppName(appName)
+
+        local htmlFileForApp = shortcuts.htmlFileForApp(myApp.appName)
 
         local shortcutModal = hs.webview.new(webViewFrame)
         shortcutModalsByScreen[screen:id()] = shortcutModal
@@ -107,7 +118,7 @@ function showShortcutsForScreen(screen)
         local modalFrame = shortcutModal:frame()
         modalFrame.x = (mainRes.w - modalFrame.w) / 2
 
-        shortcutModal:url(shortcuts) -- Update with the correct path
+        shortcutModal:url(htmlFileForApp) -- Update with the correct path
         shortcutModal:windowStyle("utility")
         shortcutModal:windowTitle("Shortcuts")
         shortcutModal:closeOnEscape(true)

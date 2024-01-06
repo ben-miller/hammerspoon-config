@@ -31,6 +31,21 @@ function Application(shortName, appName, hotkey, shortcuts)
   return self
 end
 
+function applications.getApplication(shortName)
+  return applications.all[shortName]
+end
+
+-- Get app by app name
+function applications.getApplicationByAppName(appName)
+    hs.alert.show("Looking for " .. appName)
+  for _, app in pairs(applications.all) do
+    if app.appName == appName then
+      return app
+    end
+  end
+  return nil
+end
+
 -- We define the specific applications and their metadata here.
 -- The metadata is used to generate the hammerspoon per-app shortcuts
 -- documentation. This may be distilled into a config file in the future.

@@ -39,5 +39,9 @@ function shortcuts.generateHtml()
     end
 end
 
+function shortcuts.htmlFileForApp(shortName)
+    return home .. "/src/infra/config/hammerspoon/.hammerspoon/shortcuts/" .. shortName .. ".html"
+end
+
 return shortcuts
 
