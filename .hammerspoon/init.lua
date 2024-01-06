@@ -34,15 +34,55 @@ end)
 -- Generate HTML for shortcuts modals
 shortcuts.generateHtml()
 
--- Shortcuts modal
-local shortcutModal = nil
+function getMostVisibleWindowOnScreen(screen)
+    local windowFilter = hs.window.filter.new()
+    windowFilter:setScreens(screen:id())
+    windowFilter:setOverrideFilter({visible = true, currentSpace = true, allowScreens = screen:id()})
+
+    local windows = windowFilter:getWindows(hs.window.filter.sortByFocusedLast)
+
+    local frontmostWindow = windows[1]  -- Get the most recently focused window
+    if not frontmostWindow then
+        return nil
+    end
+
+    return frontmostWindow
+end
+
+function listVisibleWindows()
+    -- For each screen, get the list of windows
+    local windows = {}
+    for i,screen in ipairs(hs.screen.allScreens()) do
+        local window = getMostVisibleWindowOnScreen(screen)
+        if not window then
+            break
+        end
+        windows[#windows + 1] = window
+    end
+    return windows
+end
+
 function showShortcuts()
-    if not shortcutModal then
+    -- For each visible window, show a shortcuts modal
+    for i,win in ipairs(listVisibleWindows()) do
+
+        -- Get screen of window
+        local screen = win:screen()
+
+        -- Show shortcuts modal for screen
+        showShortcutsForScreen(screen)
+    end
+
+end
+
+-- Shortcuts modal
+local shortcutModalsByScreen = {}
+function showShortcutsForScreen(screen)
+    if not shortcutModalsByScreen[screen:id()] then
         local shortcuts = "file://" .. home .. "/.hammerspoon/shortcuts/sample.html"
 
         -- Get built-in retina display dimensions
-        local mainScreen = hs.screen.mainScreen()
-        local screenFrame = mainScreen:frame()
+        local screenFrame = screen:frame()
 
         local webViewFrame = {
             x = screenFrame.x + 100,
@@ -51,7 +91,8 @@ function showShortcuts()
             h = screenFrame.h - 200
         }
 
-        shortcutModal = hs.webview.new(webViewFrame)
+        local shortcutModal = hs.webview.new(webViewFrame)
+        shortcutModalsByScreen[screen:id()] = shortcutModal
 
         -- Set to floating
         shortcutModal:level(hs.drawing.windowLevels.floating)
@@ -70,10 +111,11 @@ function showShortcuts()
         shortcutModal:windowTitle("Shortcuts")
         shortcutModal:closeOnEscape(true)
     end
-    shortcutModal:show()
+    shortcutModalsByScreen[screen:id()]:show()
 end
 function hideShortcuts()
-    if shortcutModal then
+    -- Hide all shortcuts modals
+    for i,shortcutModal in pairs(shortcutModalsByScreen) do
         shortcutModal:hide()
     end
 end
