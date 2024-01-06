@@ -37,7 +37,7 @@ end
 applications.all = {
 
     -- Firefox
-    firefox = Application("firefox", C.Firefox, "F", {
+    firefox = Application("firefox", C.Firefox, ".", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
