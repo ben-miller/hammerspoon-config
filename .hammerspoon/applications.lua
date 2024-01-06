@@ -37,7 +37,7 @@ end
 applications.all = {
 
     -- Firefox
-    firefox = Application("firefox", C.Firefox, "f", {
+    firefox = Application("firefox", C.Firefox, "F", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
@@ -45,13 +45,85 @@ applications.all = {
     }),
 
     -- iTerm
-    iterm = Application("iterm", "iTerm", "t", {
+    iterm = Application("iterm", "iTerm", "T", {
+        Shortcut("New Tab", "Cmd-T", nil),
+        Shortcut("New Window", "Cmd-N", nil),
+        Shortcut("Close Tab", "Cmd-W", nil),
+        Shortcut("Close Window", "Cmd-Shift-W", nil)
+    }),
+
+    -- Stickies
+    stickies = Application("stickies", "Stickies", "S", {
+        Shortcut("New Note", "Cmd-N", nil),
+        Shortcut("Close Note", "Cmd-W", nil)
+    }),
+
+    -- Obsidian
+    obsidian = Application("obsidian", "Obsidian", "O", {
+        Shortcut("New Note", "Cmd-N", nil),
+        Shortcut("Close Note", "Cmd-W", nil)
+    }),
+
+    -- IntelliJ IDEA
+    idea = Application("idea", "IntelliJ IDEA", "I", {
+        Shortcut("New Project", "Cmd-Shift-N", nil),
+        Shortcut("New File", "Cmd-N", nil),
+        Shortcut("Close Project", "Cmd-W", nil),
+        Shortcut("Close File", "Cmd-W", nil)
+    }),
+
+    -- GMail
+    gmail = Application("gmail", "GMail", "G", {
+        Shortcut("New Message", "Cmd-N", nil),
+        Shortcut("Close Message", "Cmd-W", nil)
+    }),
+
+    -- GCal
+    gcal = Application("gcal", "GCal", "C", {
+        Shortcut("New Event", "Cmd-N", nil),
+        Shortcut("Close Event", "Cmd-W", nil)
+    }),
+
+    -- LibraryThing
+    librarything = Application("librarything", "LibraryThing", "L", {
+        Shortcut("New Book", "Cmd-N", nil),
+        Shortcut("Close Book", "Cmd-W", nil)
+    }),
+
+    -- Finder
+    finder = Application("finder", "Finder", "F", {
+        Shortcut("New Window", "Cmd-N", nil),
+        Shortcut("Close Window", "Cmd-W", nil)
+    }),
+
+    -- Trello
+    -- TODO Handle weirdness with this
+    trello = Application("trello", "Agenda", "T", {
+        Shortcut("New Card", "Cmd-N", nil),
+        Shortcut("Close Card", "Cmd-W", nil)
+    }),
+
+    -- iTerm2
+    iterm2 = Application("iterm2", "iTerm2", "M", {
+        Shortcut("New Tab", "Cmd-T", nil),
+        Shortcut("New Window", "Cmd-N", nil),
+        Shortcut("Close Tab", "Cmd-W", nil),
+        Shortcut("Close Window", "Cmd-Shift-W", nil)
+    }),
+
+    -- Timer
+    timer = Application("timer", "Timer", ";", {
+        Shortcut("New Timer", "Cmd-N", nil),
+        Shortcut("Close Timer", "Cmd-W", nil)
+    }),
+
+    -- SourceTree
+    sourcetree = Application("sourcetree", "SourceTree", "E", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
         Shortcut("Close Window", "Cmd-Shift-W", nil)
     })
-
 }
 
 return applications

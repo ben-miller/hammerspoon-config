@@ -130,7 +130,6 @@ end
 -- For each application in applications.all,
 -- bind app launcher.
 for i,app in pairs(applications.all) do
-    hs.alert.show("Application: " .. app.shortName)
     w.bindAppLauncher(app.hotkey, app.appName)
 end
 

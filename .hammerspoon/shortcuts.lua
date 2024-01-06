@@ -9,7 +9,6 @@ function shortcuts.generateHtml()
 
     -- iterate over all applications
     for _, app in pairs(applications.all) do
-        hs.alert.show("Generating shortcut doc for " .. app.appName)
         local name = app.shortName
         local html = [[
           <!DOCTYPE html>
@@ -32,7 +31,7 @@ function shortcuts.generateHtml()
         local filename = home .. "/src/infra/config/hammerspoon/.hammerspoon/shortcuts/" .. name .. ".html"
         local file = io.open(filename, "w")
         if not file then
-            hs.alert.show("Could not open file " .. filename)
+            hs.alert.show("Cou/d not open file " .. filename)
             return
         end
         file:write(html)
