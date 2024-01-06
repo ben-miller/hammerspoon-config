@@ -60,11 +60,8 @@ function contexts.loadDevContext()
     hs.application.launchOrFocus("Obsidian")
     local devContextUrl = "obsidian://open?vault=life&file=Areas%2FDevelopment%2FDevelopment%20Context"
     hs.urlevent.openURL(devContextUrl)
-
-    -- Get Obsidian window
     local obsidian = hs.application.find("Obsidian")
     win = obsidian:mainWindow()
-
     w.moveToRTK(win)
     w.maximize(win)
 
@@ -99,6 +96,57 @@ function contexts.loadDevContext()
 
     -- Show alert
     hs.alert.show("Dev context loaded")
+end
+
+function contexts.loadExecutionContext()
+
+    local win = nil
+
+    -- Hide all windows
+    hideAllWindows()
+
+    -- Open GMail
+    hs.application.launchOrFocus("GMail")
+    local sourcetree = hs.application.find("GMail")
+    win = sourcetree:mainWindow()
+    w.moveToRTK(win)
+    w.maximize(win)
+
+    -- Open GCal
+    hs.application.launchOrFocus("GCal")
+    local sourcetree = hs.application.find("GCal")
+    if sourcetree then
+        win = sourcetree:mainWindow()
+        w.moveToRTK(win)
+        w.maximize(win)
+    end
+
+    -- Open and rebind Trello (Agenda)
+    hs.application.launchOrFocus("Agenda")
+    local trello = hs.application.find("Agenda")
+    win = trello:mainWindow()
+    w.moveToRetina(win)
+    w.maximize(win)
+    rebindTrello("Agenda")
+
+    -- Open execution context in Obsidian
+    hs.application.launchOrFocus("Obsidian")
+    local execContextUrl = "obsidian://open?vault=life&file=Areas%2FExecution%2FExecution%20Context"
+    hs.urlevent.openURL(execContextUrl)
+    local obsidian = hs.application.find("Obsidian")
+    win = obsidian:mainWindow()
+    w.moveToRTK(win)
+    w.maximize(win)
+
+    -- Open Firefox in LG
+    hs.application.launchOrFocus(C.Firefox)
+    local firefox = hs.application.find(C.Firefox)
+    win = firefox:mainWindow()
+    w.moveToLG(win)
+    w.maximize(win)
+
+    -- Show alert
+    hs.alert.show("Execution context loaded")
 end
 
 -- Debugging shortcut
