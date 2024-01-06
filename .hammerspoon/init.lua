@@ -99,7 +99,7 @@ function showShortcutsForScreen(screen)
         shortcutModal:level(hs.drawing.windowLevels.floating)
 
         -- Make it semi-transparent
-        shortcutModal:alpha(0.8)
+        shortcutModal:alpha(0.9)
 
         -- Center it on the "Built-in Retina Display"
         local mainScreen = hs.screen.mainScreen()
