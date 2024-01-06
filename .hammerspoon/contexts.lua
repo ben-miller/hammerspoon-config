@@ -1,7 +1,6 @@
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
 local C = require("./constants")
 local w = require("./windowmanager")
-local a = require("./applications")
 
 local contexts = {}
 
