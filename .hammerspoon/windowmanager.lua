@@ -1,4 +1,5 @@
 local C = require("./constants")
+local log = hs.logger.new("windowmanager.lua", C.LOG_LEVEL)
 
 local windowmanager = {
     -- Keybindings
@@ -34,7 +35,12 @@ end
 -- Move window to display with name
 function windowmanager.moveToDisplay(displayName)
     local win = hs.window.focusedWindow()
-    local screen = hs.screen.findByName(displayName)
+    local screen = nil
+    if (displayName == windowmanager.builtinRetina) then
+        screen = hs.screen.primaryScreen()
+    else
+        screen = hs.screen.findByName(displayName)
+    end
     win:moveToScreen(screen)
 end
 
