@@ -36,8 +36,7 @@ end
 
 
 -- Move window to display with name
-function windowmanager.moveToDisplay(displayName)
-    local win = hs.window.focusedWindow()
+function windowmanager.moveToDisplay(displayName, win)
     local screen = nil
     if (displayName == windowmanager.builtinRetina) then
         screen = hs.screen.primaryScreen()
@@ -48,18 +47,18 @@ function windowmanager.moveToDisplay(displayName)
 end
 
 -- Move window to retina display
-function windowmanager.moveToRetina()
-    windowmanager.moveToDisplay(windowmanager.builtinRetina)
+function windowmanager.moveToRetina(win)
+    windowmanager.moveToDisplay(windowmanager.builtinRetina, win)
 end
 
 -- Move window to LG display
-function windowmanager.moveToLG()
-    windowmanager.moveToDisplay(windowmanager.lg)
+function windowmanager.moveToLG(win)
+    windowmanager.moveToDisplay(windowmanager.lg, win)
 end
 
 -- Move window to RTK display
-function windowmanager.moveToRTK()
-    windowmanager.moveToDisplay(windowmanager.rtk)
+function windowmanager.moveToRTK(win)
+    windowmanager.moveToDisplay(windowmanager.rtk, win)
 end
 
 -- Print all screens.
@@ -143,8 +142,10 @@ function windowmanager.moveMiddleThird()
     win:setFrame(f)
 end
 
-function windowmanager.maximize()
-    local win = hs.window.focusedWindow()
+function windowmanager.maximize(win)
+    if not win then
+        win = hs.window.focusedWindow()
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()

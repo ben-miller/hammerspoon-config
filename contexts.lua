@@ -25,6 +25,8 @@ end
 
 function contexts.loadWritingContext()
 
+    local win = nil
+
     -- Hide all windows
     hideAllWindows()
 
@@ -32,7 +34,10 @@ function contexts.loadWritingContext()
     local writingContextUrl = "obsidian://open?vault=life&file=Areas%2FLeisure%2FWriting%2FWriting%20Context"
     hs.urlevent.openURL(writingContextUrl)
     hs.application.launchOrFocus("Obsidian")
-    w.maximize()
+    local obsidian = hs.application.find("Obsidian")
+    win = obsidian:mainWindow()
+    w.moveToLG(win)
+    w.maximize(win)
 
     -- Open Timer app
     hs.application.launchOrFocus("Timer")
@@ -43,6 +48,8 @@ end
 
 function contexts.loadDevContext()
 
+    local win = nil
+
     -- Hide all windows
     hideAllWindows()
 
@@ -50,29 +57,42 @@ function contexts.loadDevContext()
     hs.application.launchOrFocus("Obsidian")
     local devContextUrl = "obsidian://open?vault=life&file=Areas%2FDevelopment%2FDevelopment%20Context"
     hs.urlevent.openURL(devContextUrl)
-    w.moveToRTK()
-    w.maximize()
+
+    -- Get Obsidian window
+    local obsidian = hs.application.find("Obsidian")
+    win = obsidian:mainWindow()
+
+    w.moveToRTK(win)
+    w.maximize(win)
 
     -- Open SourceTree
     hs.application.launchOrFocus("SourceTree")
-    w.moveToRTK()
-    w.maximize()
+    local sourcetree = hs.application.find("SourceTree")
+    win = sourcetree:mainWindow()
+    w.moveToRTK(win)
+    w.maximize(win)
 
     -- Open and rebind Trello (Development)
     hs.application.launchOrFocus("Development")
-    w.moveToRTK()
-    w.maximize()
+    local trello = hs.application.find("Development")
+    win = trello:mainWindow()
+    w.moveToRTK(win)
+    w.maximize(win)
     rebindTrello("Development")
 
     -- Open Firefox in main screen
     hs.application.launchOrFocus(C.Firefox)
-    w.moveToRetina()
-    w.maximize()
+    local firefox = hs.application.find(C.Firefox)
+    win = firefox:mainWindow()
+    w.moveToRetina(win)
+    w.maximize(win)
 
     -- Open iTerm
     hs.application.launchOrFocus("iTerm")
-    w.moveToLG()
-    w.maximize()
+    local iterm = hs.application.find("iTerm")
+    win = iterm:mainWindow()
+    w.moveToLG(win)
+    w.maximize(win)
 
     -- Show alert
     hs.alert.show("Dev context loaded")
