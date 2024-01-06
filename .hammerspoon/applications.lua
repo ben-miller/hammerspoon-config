@@ -107,7 +107,7 @@ applications.all = {
     -- Finder
     finder = Application("finder", "Finder", "F", {
         Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Window", "Cmd-W", nil)
+        Shortcut("Close Window", "Cmd-W", nZl)
     }),
 
     -- Trello
@@ -140,7 +140,7 @@ applications.all = {
     }),
 
     -- Tidal
-    sourcetree = Application("tidal", "Tidal", "Z", {
+    sourcetree = Application("tidal", "TIDAL", "Z", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),

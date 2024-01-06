@@ -101,7 +101,12 @@ function showShortcutsForScreen(screen, window)
         -- TODO: Differentiate between own and hs concept of application
         local myApp = applications.getApplicationByAppName(appName)
 
-        local htmlFileForApp = shortcuts.htmlFileForApp(myApp.appName)
+        if not myApp then
+            --hs.alert.show("No app found for " .. appName)
+            return
+        end
+
+        local htmlFileForApp = shortcuts.htmlFileForApp(myApp.shortName)
 
         local shortcutModal = hs.webview.new(webViewFrame)
         shortcutModalsByScreen[screen:id()] = shortcutModal
