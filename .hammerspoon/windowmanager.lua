@@ -1,3 +1,5 @@
+local C = require("./constants")
+
 local windowmanager = {
     -- Keybindings
     hyper = { "cmd", "ctrl", "alt" },
@@ -6,10 +8,7 @@ local windowmanager = {
     -- Display names
     builtinRetina = "Built-in Retina Display",
     lg = "LG HDR 4K",
-    rtk = "RTK UHD HDR",
-
-    -- App names
-    firefox = "Firefox Developer Edition"
+    rtk = "RTK UHD HDR"
 }
 
 function windowmanager.bindAppLauncher(key, app)

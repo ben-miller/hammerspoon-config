@@ -17,6 +17,7 @@ watcher = hs.pathwatcher.new(home .. "/.hammerspoon/", reloadConfig):start()
 
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
 local dumper = require('dumper')
+local C = require('./constants')
 local w = require('./windowmanager')
 local contexts = require('./contexts')
 local _ = require('underscore')
@@ -80,7 +81,7 @@ function fuzzyCompare(a, b)
 end
 
 w.bindAppLauncher("S", "Stickies")
-w.bindAppLauncher(".", w.firefox)
+w.bindAppLauncher(".", C.Firefox)
 w.bindAppLauncher("O", "Obsidian")
 w.bindAppLauncher("I", "IntelliJ IDEA")
 w.bindAppLauncher("G", "GMail")
@@ -178,9 +179,9 @@ local function urlencode(url)
 end
 
 local function focusOtherBrowserWindow()
-    hs.application.launchOrFocus(w.firefox)
+    hs.application.launchOrFocus(C.Firefox)
     local focused = hs.window.focusedWindow()
-    local app = hs.application.find(w.firefox)
+    local app = hs.application.find(C.Firefox)
     local windows = app:allWindows()
     if #windows > 1 then
         _.each(windows, function(window)

@@ -1,5 +1,7 @@
 local log = hs.logger.new("main", "verbose") -- Use 'log.e(xxx)'
-local w = require("windowmanager")
+local C = require("./constants")
+local w = require("./windowmanager")
+local a = require("./applications")
 
 local contexts = {}
 
@@ -64,7 +66,7 @@ function contexts.loadDevContext()
     rebindTrello("Development")
 
     -- Open Firefox in main screen
-    hs.application.launchOrFocus(w.firefox)
+    hs.application.launchOrFocus(C.Firefox)
     w.moveToRetina()
     w.maximize()
 
