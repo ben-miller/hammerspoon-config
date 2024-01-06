@@ -5,7 +5,7 @@ local home = os.getenv("HOME")
 function reloadConfig(files)
     doReload = false
     for _,file in pairs(files) do
-        if file:sub(-4) == ".lua" then
+        if file:sub(-4) == ".lua" or file:sub(-4) == ".html" then
             doReload = true
         end
     end
