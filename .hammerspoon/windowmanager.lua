@@ -17,16 +17,16 @@ function windowmanager.bindAppLauncher(key, app)
         local focused = hs.window.focusedWindow()
         local focusedApp = focused:application()
 
-        -- Special logic for iTerm2
-        if (app == "iTerm2") then
-            hs.application.launchOrFocus("iTerm")
-        else
-            hs.application.launchOrFocus(app)
-        end
-
         -- If app is already focused, hide it
         if (focusedApp:name() == app) then
             focused:application():hide()
+        else
+            -- Otherwise, focus it (special logic for iTerm2)
+            if (app == "iTerm2") then
+                hs.application.launchOrFocus("iTerm")
+            else
+                hs.application.launchOrFocus(app)
+            end
         end
     end)
 end
