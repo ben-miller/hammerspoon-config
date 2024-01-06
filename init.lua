@@ -230,7 +230,7 @@ function selectModeChooser()
     return hs.chooser.new(function(choice)
         if not choice then return end
         if choice.text == "Execution" then
-            hs.alert.show("Execution mode loaded")
+            contexts.loadExecutionContext()
         elseif choice.text == "Writing" then
             contexts.loadWritingContext()
         elseif choice.text == "Dev" then
@@ -260,8 +260,6 @@ hs.hotkey.bind(hyper, "space", function()
         -- Calculate the position to center the chooser
         local x = mainFrame.x + 400
         local y = mainFrame.y + 200
-
-        hs.alert.show("Coordinates: " .. x .. ", " .. y)
 
         -- Show in main screen
         chooser:show({x = x, y = y})
