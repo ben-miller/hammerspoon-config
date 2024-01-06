@@ -115,8 +115,10 @@ function windowmanager.moveRightHalf()
     win:setFrame(f)
 end
 
-function windowmanager.moveMiddleTwoThirds()
-    local win = hs.window.focusedWindow()
+function windowmanager.moveMiddleTwoThirds(win)
+    if not win then
+        win = hs.window.focusedWindow()
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()

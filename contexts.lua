@@ -30,6 +30,9 @@ function contexts.loadWritingContext()
     -- Hide all windows
     hideAllWindows()
 
+    -- Rebind Trello to Agenda
+    rebindTrello("Agenda")
+
     -- Open writing context in Obsidian
     local writingContextUrl = "obsidian://open?vault=life&file=Areas%2FLeisure%2FWriting%2FWriting%20Context"
     hs.urlevent.openURL(writingContextUrl)
@@ -37,7 +40,7 @@ function contexts.loadWritingContext()
     local obsidian = hs.application.find("Obsidian")
     win = obsidian:mainWindow()
     w.moveToLG(win)
-    w.maximize(win)
+    w.moveMiddleTwoThirds(win)
 
     -- Open Timer app
     hs.application.launchOrFocus("Timer")
