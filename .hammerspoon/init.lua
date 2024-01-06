@@ -123,7 +123,7 @@ function showShortcutsForScreen(screen, window)
         local modalFrame = shortcutModal:frame()
         modalFrame.x = (mainRes.w - modalFrame.w) / 2
 
-        shortcutModal:url(htmlFileForApp) -- Update with the correct path
+        shortcutModal:url("file://" .. htmlFileForApp) -- Update with the correct path
         shortcutModal:windowStyle("utility")
         shortcutModal:windowTitle("Shortcuts")
         shortcutModal:closeOnEscape(true)
