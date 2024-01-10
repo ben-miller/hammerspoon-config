@@ -169,6 +169,56 @@ function contexts.loadExecutionContext()
     hs.alert.show("Execution context loaded")
 end
 
+function contexts.loadLeisureContext()
+
+    local win = nil
+
+    -- Hide all windows
+    hideAllWindows()
+
+    -- Open GCal
+    hs.application.launchOrFocus("GCal")
+    local sourcetree = hs.application.find("GCal")
+    if sourcetree then
+        win = sourcetree:mainWindow()
+        w.moveToRTK(win)
+        w.maximize(win)
+    end
+
+    -- Open and rebind Trello (Leisure)
+    hs.application.launchOrFocus("Leisure")
+    local trello = hs.application.find("Leisure")
+    if trello then
+        win = trello:mainWindow()
+        w.moveToLG(win)
+        w.maximize(win)
+    end
+    rebindTrello("Leisure")
+
+    -- Open execution context in Obsidian
+    hs.application.launchOrFocus("Obsidian")
+    local execContextUrl = "obsidian://open?vault=life&file=Areas%2FLeisure%2FLeisure%20Context"
+    hs.urlevent.openURL(execContextUrl)
+    local obsidian = hs.application.find("Obsidian")
+    if obsidian then
+        win = obsidian:mainWindow()
+        w.moveToRTK(win)
+        w.maximize(win)
+    end
+
+    -- Open Firefox in Retina
+    hs.application.launchOrFocus(C.Firefox)
+    local firefox = hs.application.find(C.Firefox)
+    if firefox then
+        win = firefox:mainWindow()
+        w.moveToRetina(win)
+        w.maximize(win)
+    end
+
+    -- Show alert
+    hs.alert.show("Leisure context loaded")
+end
+
 -- Debugging shortcut
 hs.hotkey.bind(hyper, "2", function()
     hs.alert.show("Debugging shortcut for contexts.lua pressed")

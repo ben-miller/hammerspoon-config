@@ -235,11 +235,14 @@ function selectModeChooser()
             contexts.loadWritingContext()
         elseif choice.text == "Dev" then
             contexts.loadDevContext()
+        elseif choice.text == "Leisure" then
+            contexts.loadLeisureContext()
         end
     end):choices({
         {text="Execution"},
         {text="Writing"},
         {text="Dev"},
+        {text="Leisure"},
     })
 end
 
