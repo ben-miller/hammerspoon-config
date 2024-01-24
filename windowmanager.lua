@@ -135,13 +135,16 @@ function windowmanager.moveMiddleTwoThirds(win)
     win:setFrame(f)
 end
 
+-- Move to middle 1/2.5, lightly larger than middle third.
 function windowmanager.moveMiddleThird()
     local win = hs.window.focusedWindow() local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
+    local width = max.w / 2.5
 
-    f.x = max.x + max.w / 3
-    f.w = max.w / 3
+    -- Set window to "width" size, move to middle
+    f.x = max.x + (max.w - width) / 2
+    f.w = width
     f.y = max.y
     f.h = max.h
 
