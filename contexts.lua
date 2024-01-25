@@ -33,9 +33,6 @@ function contexts.loadWritingContext()
     -- Rebind Trello to Agenda
     rebindTrello("Agenda")
 
-    -- Open Timer app
-    hs.application.launchOrFocus("Timer")
-
     -- Open writing context in Obsidian
     local writingContextUrl = "obsidian://open?vault=life&file=Areas%2FLeisure%2FWriting%2FWriting%20Context"
     hs.urlevent.openURL(writingContextUrl)
