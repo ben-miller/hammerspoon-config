@@ -142,17 +142,6 @@ function contexts.loadExecutionContext()
     end
     rebindTrello("Agenda")
 
-    -- Open execution context in Obsidian
-    hs.application.launchOrFocus("Obsidian")
-    local execContextUrl = "obsidian://open?vault=life&file=Areas%2FExecution%2FExecution%20Context"
-    hs.urlevent.openURL(execContextUrl)
-    local obsidian = hs.application.find("Obsidian")
-    if obsidian then
-        win = obsidian:mainWindow()
-        w.moveToRTK(win)
-        w.moveLeftHalf(win)
-    end
-
     -- Open Firefox in LG
     hs.application.launchOrFocus(C.Firefox)
     local firefox = hs.application.find(C.Firefox)
@@ -160,6 +149,17 @@ function contexts.loadExecutionContext()
         win = firefox:mainWindow()
         w.moveToLG(win)
         w.maximize(win)
+    end
+
+    -- Open execution context in Obsidian
+    hs.application.launchOrFocus("Obsidian")
+    local execContextUrl = "obsidian://open?vault=life&file=Areas%2FExecution%2FExecution%20Context"
+    hs.urlevent.openURL(execContextUrl)
+    local obsidian = hs.application.find("Obsidian")
+    if obsidian then
+        win = obsidian:mainWindow()
+        w.moveToLG(win)
+        w.moveRightTwoThirds(win)
     end
 
     -- Show alert
