@@ -159,7 +159,7 @@ function contexts.loadExecutionContext()
     if obsidian then
         win = obsidian:mainWindow()
         w.moveToLG(win)
-        w.moveRightTwoThirds(win)
+        w.moveRightHalf(win)
     end
 
     -- Show alert
