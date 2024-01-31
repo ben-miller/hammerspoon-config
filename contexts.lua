@@ -107,6 +107,7 @@ function contexts.loadDevContext()
     hs.alert.show("Dev context loaded")
 end
 
+-- Now called main context
 function contexts.loadExecutionContext()
 
     local win = nil
@@ -151,9 +152,9 @@ function contexts.loadExecutionContext()
         w.maximize(win)
     end
 
-    -- Open execution context in Obsidian
+    -- Open main context in Obsidian
     hs.application.launchOrFocus("Obsidian")
-    local execContextUrl = "obsidian://open?vault=life&file=Areas%2FExecution%2FExecution%20Context"
+    local execContextUrl = "obsidian://open?vault=life&file=Areas%2FExecution%2FMain%20Context"
     hs.urlevent.openURL(execContextUrl)
     local obsidian = hs.application.find("Obsidian")
     if obsidian then
