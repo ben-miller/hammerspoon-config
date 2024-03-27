@@ -1,6 +1,6 @@
 local constants = {
     -- App names
-    Firefox = "Firefox Developer Edition"
+    Firefox = "Firefox"
 }
 
 return constants

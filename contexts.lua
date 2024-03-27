@@ -15,23 +15,12 @@ function hideAllWindows()
     end
 end
 
-function rebindTrello(name)
-    -- Unbind "T" hotkey
-    hs.hotkey.disableAll(hyper, "T")
-
-    -- Rebind "T" hotkey to Trello board of current context
-    w.bindAppLauncher("T", name)
-end
-
 function contexts.loadWritingContext()
 
     local win = nil
 
     -- Hide all windows
     hideAllWindows()
-
-    -- Rebind Trello to Agenda
-    rebindTrello("Agenda")
 
     -- Open writing context in Obsidian
     local writingContextUrl = "obsidian://open?vault=life&file=Areas%2FLeisure%2FWriting%2FWriting%20Context"
@@ -74,16 +63,6 @@ function contexts.loadDevContext()
         w.moveToRTK(win)
         w.maximize(win)
     end
-
-    -- Open and rebind Trello (Development)
-    hs.application.launchOrFocus("Development")
-    local trello = hs.application.find("Development")
-    if trello then
-        win = trello:mainWindow()
-        w.moveToRTK(win)
-        w.maximize(win)
-    end
-    rebindTrello("Development")
 
     -- Open Firefox in main screen
     hs.application.launchOrFocus(C.Firefox)
@@ -133,16 +112,6 @@ function contexts.loadExecutionContext()
         w.moveRightHalf(win)
     end
 
-    -- Open and rebind Trello (Agenda)
-    hs.application.launchOrFocus("Agenda")
-    local trello = hs.application.find("Agenda")
-    if trello then
-        win = trello:mainWindow()
-        w.moveToRetina(win)
-        w.maximize(win)
-    end
-    rebindTrello("Agenda")
-
     -- Open Firefox in LG
     hs.application.launchOrFocus(C.Firefox)
     local firefox = hs.application.find(C.Firefox)
@@ -182,16 +151,6 @@ function contexts.loadLeisureContext()
         w.moveToRTK(win)
         w.maximize(win)
     end
-
-    -- Open and rebind Trello (Leisure)
-    hs.application.launchOrFocus("Leisure")
-    local trello = hs.application.find("Leisure")
-    if trello then
-        win = trello:mainWindow()
-        w.moveToLG(win)
-        w.maximize(win)
-    end
-    rebindTrello("Leisure")
 
     -- Open execution context in Obsidian
     hs.application.launchOrFocus("Obsidian")
