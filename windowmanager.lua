@@ -24,9 +24,9 @@ function windowmanager.bindAppLauncher(key, app)
         if (focusedApp:name() == app) then
             focused:application():hide()
         else
-            -- Otherwise, focus it (special logic for iTerm2)
-            if (app == "iTerm2") then
-                hs.application.launchOrFocus("iTerm")
+            -- Otherwise, focus it (special logic for terminal)
+            if (app == C.Terminal) then
+                hs.application.launchOrFocus(C.Terminal)
             else
                 hs.application.launchOrFocus(app)
             end

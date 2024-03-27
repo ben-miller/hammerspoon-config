@@ -58,14 +58,6 @@ applications.all = {
         Shortcut("Close Window", "Cmd-Shift-W", nil)
     }),
 
-    -- iTerm
-    iterm = Application("iterm", "iTerm", "T", {
-        Shortcut("New Tab", "Cmd-T", nil),
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Tab", "Cmd-W", nil),
-        Shortcut("Close Window", "Cmd-Shift-W", nil)
-    }),
-
     -- Stickies
     stickies = Application("stickies", "Stickies", "S", {
         Shortcut("New Note", "Cmd-N", nil),
@@ -117,8 +109,8 @@ applications.all = {
         Shortcut("Close Card", "Cmd-W", nil)
     }),
 
-    -- iTerm2
-    iterm2 = Application("iterm2", "iTerm2", "M", {
+    -- Terminal
+    term = Application(C.Terminal, C.Terminal, "M", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),

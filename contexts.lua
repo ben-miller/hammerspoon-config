@@ -73,11 +73,11 @@ function contexts.loadDevContext()
         w.maximize(win)
     end
 
-    -- Open iTerm
-    hs.application.launchOrFocus("iTerm")
-    local iterm = hs.application.find("iTerm")
-    if iterm then
-        win = iterm:mainWindow()
+    -- Open terminal app
+    hs.application.launchOrFocus(C.Terminal)
+    local term = hs.application.find(C.Terminal)
+    if term then
+        win = term:mainWindow()
         w.moveToLG(win)
         w.maximize(win)
     end

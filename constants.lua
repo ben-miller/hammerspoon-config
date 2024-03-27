@@ -1,6 +1,7 @@
 local constants = {
     -- App names
-    Firefox = "Firefox"
+    Firefox = "Firefox",
+    Terminal = "WezTerm"
 }
 
 return constants
