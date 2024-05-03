@@ -50,6 +50,9 @@ end
 -- documentation. This may be distilled into a config file in the future.
 applications.all = {
 
+    -- Emacs
+    emacs = Application("emacs", "Emacs", "J", {}),
+
     -- Firefox
     firefox = Application("firefox", C.Firefox, "B", {
         Shortcut("New Tab", "Cmd-T", nil),
