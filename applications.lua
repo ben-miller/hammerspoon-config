@@ -53,6 +53,9 @@ applications.all = {
     -- Emacs
     emacs = Application("emacs", "Emacs", "J", {}),
 
+    -- ChatGPT
+    chatgpt = Application("chatgpt", "ChatGPT", "U", {}),
+
     -- Firefox
     firefox = Application("firefox", C.Firefox, "B", {
         Shortcut("New Tab", "Cmd-T", nil),
