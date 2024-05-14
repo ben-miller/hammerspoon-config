@@ -57,7 +57,7 @@ applications.all = {
     chatgpt = Application("chatgpt", "ChatGPT", "U", {}),
 
     -- Firefox
-    firefox = Application("firefox", C.Firefox, "B", {
+    firefox = Application("firefox", C.Firefox, "K", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
@@ -115,6 +115,9 @@ applications.all = {
         Shortcut("Close Card", "Cmd-W", nil)
     }),
 
+    -- Tech Learning
+    techlearning = Application("techlearning", "Tech Learning", "H", { }),
+
     -- Terminal
     term = Application(C.Terminal, C.Terminal, "M", {
         Shortcut("New Tab", "Cmd-T", nil),
@@ -154,12 +157,12 @@ applications.all = {
     }),
 
     -- Trello (leisure)
-    trello_leisure = Application("trello_leisure", "Leisure", "U", {
-        Shortcut("New Tab", "Cmd-T", nil),
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Tab", "Cmd-W", nil),
-        Shortcut("Close Window", "Cmd-Shift-W", nil)
-    })
+    -- trello_leisure = Application("trello_leisure", "Leisure", "U", {
+    --     Shortcut("New Tab", "Cmd-T", nil),
+    --     Shortcut("New Window", "Cmd-N", nil),
+    --     Shortcut("Close Tab", "Cmd-W", nil),
+    --     Shortcut("Close Window", "Cmd-Shift-W", nil)
+    -- })
 }
 
 return applications
