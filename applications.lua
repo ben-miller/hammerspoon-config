@@ -148,21 +148,13 @@ applications.all = {
         Shortcut("Close Window", "Cmd-Shift-W", nil)
     }),
 
-    -- Trello (dev)
-    trello_dev = Application("trello_dev", "Development", "D", {
+    -- Dash
+    dash = Application("dash", "Dash", "D", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
         Shortcut("Close Window", "Cmd-Shift-W", nil)
     }),
-
-    -- Trello (leisure)
-    -- trello_leisure = Application("trello_leisure", "Leisure", "U", {
-    --     Shortcut("New Tab", "Cmd-T", nil),
-    --     Shortcut("New Window", "Cmd-N", nil),
-    --     Shortcut("Close Tab", "Cmd-W", nil),
-    --     Shortcut("Close Window", "Cmd-Shift-W", nil)
-    -- })
 }
 
 return applications
