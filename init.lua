@@ -166,6 +166,12 @@ hs.hotkey.bind(hyper, "W", function()
     end
 end)
 
+-- Put system to sleep
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "S", function()
+        hs.caffeinate.lockScreen()
+        hs.caffeinate.systemSleep()
+end)
+
 -- Open New Tab
 hs.hotkey.bind(hypo, "T", function()
     hs.urlevent.openURL("http://localhost:8282/index.html")
