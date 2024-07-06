@@ -96,12 +96,6 @@ applications.all = {
         Shortcut("Close Event", "Cmd-W", nil)
     }),
 
-    -- LibraryThing
-    librarything = Application("librarything", "LibraryThing", "L", {
-        Shortcut("New Book", "Cmd-N", nil),
-        Shortcut("Close Book", "Cmd-W", nil)
-    }),
-
     -- Finder
     finder = Application("finder", "Finder", "F", {
         Shortcut("New Window", "Cmd-N", nil),
@@ -142,14 +136,6 @@ applications.all = {
 
     -- Tidal
     tidal = Application("tidal", "TIDAL", "Z", {
-        Shortcut("New Tab", "Cmd-T", nil),
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Tab", "Cmd-W", nil),
-        Shortcut("Close Window", "Cmd-Shift-W", nil)
-    }),
-
-    -- Dash
-    dash = Application("dash", "Dash", "D", {
         Shortcut("New Tab", "Cmd-T", nil),
         Shortcut("New Window", "Cmd-N", nil),
         Shortcut("Close Tab", "Cmd-W", nil),
