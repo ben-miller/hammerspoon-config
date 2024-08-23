@@ -57,90 +57,49 @@ applications.all = {
     chatgpt = Application("chatgpt", "ChatGPT", "U", {}),
 
     -- Firefox
-    firefox = Application("firefox", C.Firefox, "K", {
-        Shortcut("New Tab", "Cmd-T", nil),
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Tab", "Cmd-W", nil),
-        Shortcut("Close Window", "Cmd-Shift-W", nil)
-    }),
+    firefox = Application("firefox", C.Firefox, "K", {}),
 
     -- Stickies
-    stickies = Application("stickies", "Stickies", "S", {
-        Shortcut("New Note", "Cmd-N", nil),
-        Shortcut("Close Note", "Cmd-W", nil)
-    }),
+    stickies = Application("stickies", "Stickies", "S", {}),
 
     -- Obsidian
-    obsidian = Application("obsidian", "Obsidian", "O", {
-        Shortcut("New Note", "Cmd-N", nil),
-        Shortcut("Close Note", "Cmd-W", nil)
-    }),
+    obsidian = Application("obsidian", "Obsidian", "O", {}),
 
     -- IntelliJ IDEA
-    idea = Application("idea", "IntelliJ IDEA", "I", {
-        Shortcut("New Project", "Cmd-Shift-N", nil),
-        Shortcut("New File", "Cmd-N", nil),
-        Shortcut("Close Project", "Cmd-W", nil),
-        Shortcut("Close File", "Cmd-W", nil)
-    }),
+    idea = Application("idea", "IntelliJ IDEA", "I", {}),
+
+    -- PyCharm
+    pycharm = Application("pycharm", "PyCharm", "P", {}),
+
+    -- WebStorm
+    pycharm = Application("webstorm", "WebStorm", "B", {}),
 
     -- GMail
-    gmail = Application("gmail", "GMail", "G", {
-        Shortcut("New Message", "Cmd-N", nil),
-        Shortcut("Close Message", "Cmd-W", nil)
-    }),
+    gmail = Application("gmail", "GMail", "G", {}),
 
     -- GCal
-    gcal = Application("gcal", "GCal", "C", {
-        Shortcut("New Event", "Cmd-N", nil),
-        Shortcut("Close Event", "Cmd-W", nil)
-    }),
+    gcal = Application("gcal", "GCal", "C", {}),
 
     -- Finder
-    finder = Application("finder", "Finder", "F", {
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Window", "Cmd-W", nZl)
-    }),
+    finder = Application("finder", "Finder", "F", {}),
 
     -- Trello
-    -- TODO Handle weirdness with this
-    trello = Application("trello", "Agenda", "T", {
-        Shortcut("New Card", "Cmd-N", nil),
-        Shortcut("Close Card", "Cmd-W", nil)
-    }),
+    trello = Application("trello", "Agenda", "T", {}),
 
     -- Tech Learning
     techlearning = Application("techlearning", "Tech Learning", "H", { }),
 
     -- Terminal
-    term = Application(C.Terminal, C.Terminal, "M", {
-        Shortcut("New Tab", "Cmd-T", nil),
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Tab", "Cmd-W", nil),
-        Shortcut("Close Window", "Cmd-Shift-W", nil)
-    }),
+    term = Application(C.Terminal, C.Terminal, "M", {}),
 
     -- Timer
-    timer = Application("timer", "Timer", ";", {
-        Shortcut("New Timer", "Cmd-N", nil),
-        Shortcut("Close Timer", "Cmd-W", nil)
-    }),
+    timer = Application("timer", "Timer", ";", {}),
 
     -- SourceTree
-    sourcetree = Application("sourcetree", "Sourcetree", "E", {
-        Shortcut("New Tab", "Cmd-T", nil),
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Tab", "Cmd-W", nil),
-        Shortcut("Close Window", "Cmd-Shift-W", nil)
-    }),
+    sourcetree = Application("sourcetree", "Sourcetree", "E", {}),
 
     -- Tidal
-    tidal = Application("tidal", "TIDAL", "Z", {
-        Shortcut("New Tab", "Cmd-T", nil),
-        Shortcut("New Window", "Cmd-N", nil),
-        Shortcut("Close Tab", "Cmd-W", nil),
-        Shortcut("Close Window", "Cmd-Shift-W", nil)
-    }),
+    tidal = Application("tidal", "TIDAL", "Z", {}),
 }
 
 return applications
