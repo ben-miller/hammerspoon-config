@@ -100,6 +100,9 @@ applications.all = {
 
     -- Tidal
     tidal = Application("tidal", "TIDAL", "Z", {}),
+
+    -- VSCodium
+    tidal = Application("vscodium", "VSCodium", "V", {}),
 }
 
 return applications
