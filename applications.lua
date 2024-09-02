@@ -72,7 +72,10 @@ applications.all = {
     pycharm = Application("pycharm", "PyCharm", "P", {}),
 
     -- WebStorm
-    pycharm = Application("webstorm", "WebStorm", "B", {}),
+    webstorm = Application("webstorm", "WebStorm", "B", {}),
+
+    -- RubyMine
+    rubymine = Application("rubymine", "RubyMine", "R", {}),
 
     -- GMail
     gmail = Application("gmail", "GMail", "G", {}),
