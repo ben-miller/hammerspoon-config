@@ -106,6 +106,9 @@ applications.all = {
 
     -- VSCodium
     tidal = Application("vscodium", "VSCodium", "V", {}),
+
+    -- Preview
+    preview = Application("preview", "Preview", "0", {}),
 }
 
 return applications
