@@ -89,6 +89,9 @@ applications.all = {
     -- Trello
     trello = Application("trello", "Agenda", "T", {}),
 
+    -- Trello Development
+    trello_dev = Application("trello-dev", "Development", "D", {}),
+
     -- Tech Learning
     techlearning = Application("techlearning", "Tech Learning", "H", { }),
 
